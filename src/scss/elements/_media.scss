@@ -1,0 +1,62 @@
+.sponsor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+        max-width: 200px;
+    }
+}
+
+.lb-caption {
+    display: none !important;
+}
+
+img {
+    height: 100%;
+    max-width: 100%;
+}
+
+.background-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.listing-image {
+    .icon {
+        text-align: center;
+
+        img {
+            object-fit: contain;
+            height: 30vh;
+        }
+    }
+
+    img {
+        object-fit: cover;
+        object-position: center;
+        overflow: hidden;
+        height: 60vh;
+        width: 100%;
+    }
+
+}
+
+.partner-listing-image {
+    img {
+        object-fit: contain;
+        object-position: center;
+        overflow: hidden;
+        height: 40vh;
+        width: 100%;
+    }
+}
+
+.fa-brands {
+    font-size: 3.2rem;
+    color: $primary;
+}
