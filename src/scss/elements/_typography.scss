@@ -22,6 +22,12 @@ p {
 
 span {
     font-family: $body-text;
+
+    &.sponsored {
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+        }
 }
 
 button {

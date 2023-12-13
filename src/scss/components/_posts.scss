@@ -1,6 +1,15 @@
 article {
     background-color: $white;
     padding: 20px;
+
+    &.agenda {
+        background-color: $green;
+
+        .entry-content {
+            background-color: $white;
+            padding: 20px;
+        }
+    }
 }
 
 article.post {
@@ -160,4 +169,16 @@ span.page-numbers {
                        display: none;
                    }
                }
+           }
+
+           .agenda-tabs {
+            h2 {
+                color: $white;
+            }
+
+            .panel {
+                h2, h3 {
+                    color: $black;
+                }
+            }
            }

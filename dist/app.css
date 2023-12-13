@@ -4,6 +4,14 @@ header .navbar {
 header .navbar .navbar-brand {
   max-width: 120px;
 }
+header .navbar .navbar-nav {
+  height: 60px;
+}
+@media (min-width: 321px) and (max-width: 768px) {
+  header .navbar .navbar-nav {
+    height: auto;
+  }
+}
 header .navbar .navbar-nav #cssmenu {
   line-height: 1;
   display: block;
@@ -313,6 +321,13 @@ article {
   background-color: #fff;
   padding: 20px;
 }
+article.agenda {
+  background-color: #478778;
+}
+article.agenda .entry-content {
+  background-color: #fff;
+  padding: 20px;
+}
 
 article.post .entry-content p:first-of-type:first-letter {
   font-size: 8.5rem;
@@ -450,6 +465,13 @@ span.page-numbers {
   display: none;
 }
 
+.agenda-tabs h2 {
+  color: #fff;
+}
+.agenda-tabs .panel h2, .agenda-tabs .panel h3 {
+  color: #000;
+}
+
 body {
   background-color: #478778;
   margin: 0;
@@ -472,6 +494,11 @@ p {
 
 span {
   font-family: "DM Sans", sans-serif;
+}
+span.sponsored {
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
 }
 
 button {
@@ -736,7 +763,6 @@ button {
 }
 button.secondary {
   background: #478778;
-  color: #000;
 }
 button:hover {
   border-color: #fff;
@@ -979,12 +1005,11 @@ select {
 .sponsor {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: space-evenly;
 }
 .sponsor img {
-  max-width: 200px;
+  max-width: 150px;
+  margin: 0 10px;
 }
 
 .lb-caption {
