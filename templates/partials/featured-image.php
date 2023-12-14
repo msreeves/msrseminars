@@ -13,7 +13,7 @@ if ( has_post_thumbnail() && ! post_password_required() ) {
 
 	// Make the featured media thinner on archive pages.
 	if ( ! is_single() ) {
-		$featured_media_inner_classes .= ' medium';
+		$featured_media_inner_classes .= ' small';
 	}
 	?>
 

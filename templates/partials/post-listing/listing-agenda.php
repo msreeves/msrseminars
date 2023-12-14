@@ -35,7 +35,7 @@
                                                        $featured_post
                                                    ),
                                                ); ?>
-                                                <img src="<?php echo $image[0]; ?>" alt=""> </a>   
+                                                <img src="<?php echo $image[0]; ?>" alt="alt="<?php the_post_thumbnail_caption(); ?>""> </a>   
             <hr></hr>
     <?php endforeach; ?>
         </div>

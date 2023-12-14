@@ -35,14 +35,42 @@ img {
         }
     }
 
+           img {
+               margin: 0;
+               object-fit: cover;
+               object-position: center;
+               overflow: hidden;
+               height: 60vh;
+               width: 100%;
+           }
+}
+
+.post {
+    .listing-image {
+        overflow: hidden;
+
+        img {
+            height: 40vh;
+            transition: transform .5s ease;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.5);
+            }
+        }
+    }
+}
+
+.featured-media-inner {
     img {
+        margin: 0;
         object-fit: cover;
         object-position: center;
         overflow: hidden;
         height: 60vh;
         width: 100%;
     }
-
 }
 
 .partner-listing-image {

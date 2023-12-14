@@ -36,7 +36,7 @@ $type = $args['type'];
               <div class="row">
       <?php while($latests->have_posts()): $latests->the_post();	?>	
         
-      <?php get_template_part( 'templates/partials/post-listing/listing-posts' ); ?>
+      <?php get_template_part( 'templates/partials/post-listing/posts/maincategory' ); ?>
 
        <?php endwhile; ?>
    </div>

@@ -1,7 +1,7 @@
     <div class="col-lg-4">
       <div class="panel">
         <div class="listing-image">
-            <?php the_post_thumbnail(); ?>
+             <?php get_template_part( 'templates/partials/featured-image' ); ?>
         </div>
                <div class="listing-text text-center">
             <h2><?php the_title() ?></h2>
