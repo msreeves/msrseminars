@@ -9,7 +9,7 @@
 
 get_header();
 ?>
-<section>
+<section class="people">
   <div class="container">
       <div class="panel">
         <?php the_title( '<h1>', '</h1>' ); ?>
@@ -19,8 +19,9 @@ get_header();
       $args = array(
         'post_type' => 'panelist',
         'posts_per_page' => -1,
-        'orderby' => 'title',
-        'order' => 'ASC'
+        'meta_key'       => 'name',
+        'orderby'        => 'meta_value',
+        'order'          => 'ASC'
       );
       $all_partners = new WP_Query( $args );		
       ?>

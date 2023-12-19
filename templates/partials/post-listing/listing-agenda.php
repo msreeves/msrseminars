@@ -20,7 +20,7 @@
                    <?php
     $featured_posts = get_sub_field('sponsor');
     if( $featured_posts ): ?>
-    <h3 class="text-center"> Sponsors:</h3>
+    <h3> Sponsors:</h3>
      <div class="sponsor">
         <?php foreach( $featured_posts as $featured_post ): 
         ?>  

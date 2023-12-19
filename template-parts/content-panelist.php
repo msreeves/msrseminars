@@ -38,10 +38,16 @@
 		</div>
 		</div>
 			</div>
-		<div class="col-md-6">
-		<?php get_template_part( 'templates/partials/featured-image' ); ?>
+			<div class="col-md-6">
+			<div class="panel">
+			<div class="listing-image">
+			<?php the_post_thumbnail();
+echo get_post(get_post_thumbnail_id())->post_excerpt; ?>
+</div>
 		</div>
+			  </div>
 		<div class="col-sm-12">
+			<div class="panel">
 <?php if (get_field('profile')) : ?>
 	<div class="post-inner">
 		<div class="entry-content">
@@ -52,9 +58,10 @@
 
 	</div><!-- .post-inner -->
 	<?php endif; ?>
+</div>
 		</div>
-	</div>
 		</div>
+</div>
 	<div class="section-inner">
 		<?php
 		wp_link_pages(

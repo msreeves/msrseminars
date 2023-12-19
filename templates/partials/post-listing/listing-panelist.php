@@ -6,7 +6,7 @@
                <div class="listing-text text-center">
             <h2><?php the_title() ?></h2>
             <?php if ( get_field('job_title') ) : ?>
-            <p> <i class="fa fa-briefcase fa-xl" aria-hidden="true"></i> <?php print get_field('job_title') ?> </p>
+            <h3> <i class="fa fa-briefcase fa-xl" aria-hidden="true"></i> <?php print get_field('job_title') ?> </h3>
              <?php endif; ?>
               <?php if ( get_field('profile') ) : ?>
             <p> <?php
@@ -18,8 +18,8 @@
                 $value = rtrim(substr($value,0,$trim_length)) .'...';
                 print $value;
                 }?></p>
-             <?php endif; ?>
               <a href="<?php echo the_permalink(); ?>"><button>Read Profile</button></a>
+                 <?php endif; ?>
                 </div>
   </div>
        </div>

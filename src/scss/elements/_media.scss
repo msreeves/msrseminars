@@ -1,12 +1,11 @@
 .sponsor {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     flex-wrap: wrap;
 
     img {
         max-width: 150px;
-        margin: 0 10px;
+        margin: 0 10px 0 0;
     }
 }
 
@@ -24,6 +23,25 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
+}
+
+.people {
+    .post {
+        .listing-image {
+            img {
+                height: 70vh;
+            }
+        }
+
+    }
+}
+
+article {
+    .listing-image {
+        img {
+        height: 100vh;
+    }
+}
 }
 
 .listing-image {

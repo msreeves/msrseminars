@@ -118,6 +118,7 @@ function be_register_taxonomies() {
 			'single_name'  => 'Location',
 			'plural_name'  => 'Location',
 			'post_type'    => 'advert',
+            'public'       => false, 
 		),
 	);
 
