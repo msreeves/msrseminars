@@ -385,6 +385,40 @@ figure.featured-media {
   display: inline-block;
 }
 
+.panelists {
+  display: flex;
+}
+@media (min-width: 321px) and (max-width: 768px) {
+  .panelists {
+    display: block;
+  }
+}
+.panelists a {
+  text-decoration: none;
+  color: #000;
+}
+.panelists a:hover {
+  text-decoration: none;
+}
+.panelists a .panel {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+@media (min-width: 321px) and (max-width: 768px) {
+  .panelists a .panel {
+    flex-direction: column;
+  }
+}
+.panelists a .panel img {
+  max-height: 80px;
+}
+@media (min-width: 321px) and (max-width: 768px) {
+  .panelists a .panel img {
+    max-height: 100%;
+  }
+}
+
 .listing-text {
   padding: 20px;
 }

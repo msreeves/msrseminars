@@ -79,6 +79,38 @@ figure.featured-media {
     }
 }
 
+.panelists {
+    display: flex;
+
+    @include media(">phone", "<=tablet") {
+            display: block;
+        }
+    a {
+        text-decoration: none;
+        color: $black;
+        &:hover {
+            text-decoration: none;
+        }
+    .panel {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+
+    @include media(">phone", "<=tablet") {
+            flex-direction: column;
+        }
+
+    img {
+        max-height: 80px;
+
+        @include media(">phone", "<=tablet") {
+                max-height: 100%;
+            }
+    }
+    }
+}
+}
+
 .listing-text {
     padding: 20px;
 }
