@@ -40,7 +40,7 @@ if( $link ):
                                                    ),
                                                    "single-post-thumbnail"
                                                ); ?>
-                                                <img src="<?php echo $image[0]; ?>" alt=""> </a>
+                                                <img src="<?php echo $image[0]; ?>" alt="<?php the_post_thumbnail_caption(); ?>"> </a>
 </a>
 <?php endif; ?>
                                             </div>
