@@ -1094,8 +1094,7 @@ article .listing-image img {
   -o-object-position: center;
      object-position: center;
   overflow: hidden;
-  height: 40vh;
-  width: 100%;
+  height: 20vh;
 }
 
 .fa-brands {
