@@ -20,10 +20,13 @@
 			<section class="post-inner">
 		<div class="entry-content">
 			<?php the_title( '<h1>', '</h1>' ); ?>
-			<?php
+			<?php print get_field('information') ?> 
+				<?php get_template_part( 'templates/partials/featured-image' ); ?>
+				<section>
+					<?php
     $featured_posts = get_field('sponsors');
     if( $featured_posts ): ?>
-    <h3 class="text-center"> Sponsors:</h3>
+    <h3> Sponsors:</h3>
      <div class="sponsor">
         <?php foreach( $featured_posts as $featured_post ): 
         ?>  
@@ -43,9 +46,7 @@ $link = get_field('link');
     <?php endforeach; ?>
         </div>
     <?php endif; ?>
-			<?php print get_field('information') ?> 
-			<?php get_template_part( 'templates/partials/featured-image' ); ?>
-				
+		</section>	
 		</div><!-- .entry-content -->
 
 	</section><!-- .post-inner -->
