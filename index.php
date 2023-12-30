@@ -60,14 +60,14 @@ if( $link ):
 </div>
   <?php if( $sponsors ) : ?>
               <div class="row g-0">                            
-				   <div class="col-md-6">
+				   <div class="col-xl-6 col-lg-6">
                		<div class="panel">
 				<div class="my-auto">
 				<h2 class="text-center">Main Sponsor</h2>
 		  </div>
 		  </div>
                 </div>
-                    <div class="col-md-6"> 
+                    <div class="col-xl-6 col-lg-6"> 
                                         		<div class="panel">
                                                <div class="sponsor">
                                                <?php foreach( $sponsors as $sponsor ): ?>

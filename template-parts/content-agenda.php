@@ -87,5 +87,4 @@ $link = get_field('link');
 		<?php
 	}
 	?>
-
 </article><!-- .post -->

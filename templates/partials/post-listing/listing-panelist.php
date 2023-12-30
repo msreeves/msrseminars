@@ -1,5 +1,5 @@
-    <div class="col-lg-4">
-      <div class="panel">
+    <div class="col-xl-4 col-lg-4">
+      <div class="post panel">
         <div class="listing-image">
              <?php get_template_part( 'templates/partials/featured-image' ); ?>
         </div>

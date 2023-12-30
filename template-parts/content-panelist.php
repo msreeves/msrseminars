@@ -16,7 +16,7 @@
 <article <?php post_class(); ?> id="post-panelist<?php the_ID(); ?>">
 <div class="container">
 	<div class="row g-0">
-		<div class="col-md-6">
+		<div class="col-xl-6 col-lg-6">
 			<div class="panel">
 	<div class="my-auto text-center">
 		<?php if( have_rows('social') ): ?>
@@ -33,12 +33,12 @@
 			<h2> <i class="fa fa-briefcase" aria-hidden="true"></i> <?php print get_field('job_title') ?> </h2>
 			  <?php endif; ?>
 			  <?php if (get_field('company')) : ?>
-			<h2> <i class="fa fa-map-marker" aria-hidden="true"></i> <?php print get_field('company') ?> </h2>
+			<h3> <i class="fa fa-map-marker" aria-hidden="true"></i> <?php print get_field('company') ?> </h3>
 			<?php endif; ?>
 		</div>
 		</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-xl-6 col-lg-6">
 			<div class="panel">
 			<div class="listing-image">
 			<?php the_post_thumbnail();

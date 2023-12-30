@@ -1,4 +1,4 @@
-		<div class="col-md-4 col-md-6">
+		<div class="col-md-4 col-md-4">
 			<div class="post panel">  
         <div class="listing-image">
          <?php get_template_part( 'templates/partials/featured-image' ); ?>
