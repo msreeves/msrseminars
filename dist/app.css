@@ -847,6 +847,21 @@ button a.btn-load-more {
   text-decoration: none;
 }
 
+.ctas {
+  display: flex;
+  justify-content: space-around;
+  justify-content: center;
+}
+@media (min-width: 321px) and (max-width: 768px) {
+  .ctas {
+    display: block;
+  }
+}
+.ctas button {
+  margin: 0.25rem;
+  width: 100%;
+}
+
 input[type=button] {
   background: #2AAA8A;
   border: none;

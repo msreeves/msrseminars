@@ -24,7 +24,7 @@ $sponsors = get_field('main_sponsor' , 'option');
 <main id="site-content">
 <?php if (is_page( 95 )) : ?>
   <?php if( get_field('hero' ,'option') ) : ?>
-  <div class="p-5 background-image" style="background-image: url('<?php echo the_field('image', 'option'); ?>');">
+  <div class="background-image" style="background-image: url('<?php echo the_field('image', 'option'); ?>');">
   <div class="mask p-5" style="background-color: rgba(0, 0, 0, 0.2);">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="text-white text-center">
@@ -34,7 +34,7 @@ $sponsors = get_field('main_sponsor' , 'option');
           <h3><?php echo $venue['address']; ?> </h3> 
          <h3><?php if($date['start']) : ?>  <i class="fa-solid fa-calendar"></i> <?php endif; ?> <?php echo $date['start']; ?> <?php if($date['finish']) : ?> - <?php echo $date['finish']; ?><?php endif; ?> </h3> 
           <h3><?php if($time['start']) : ?>  <i class="fa-solid fa-clock"></i> <?php endif; ?> <?php echo $time['start']; ?> <?php if($time['finish']) : ?> - <?php echo $time['finish']; ?><?php endif; ?> </h3> 
-         <div class="d-flex justify-content-around">
+         <div class="ctas">
                                       <?php 
 $link = get_field('link1', 'option');
 if( $link ): 
