@@ -82,10 +82,11 @@ figure.featured-media {
 
 .panelists {
     display: flex;
+@include media(">phone", "<=tablet") {
+        display: block;
+        flex-direction: column;
+    }
 
-    @include media(">phone", "<=tablet") {
-            display: block;
-        }
     a {
         text-decoration: none;
         color: $black;
@@ -97,17 +98,12 @@ figure.featured-media {
     flex-direction: row;
     padding: 0;
 
-    @include media(">phone", "<=tablet") {
-            flex-direction: column;
-        }
-
     img {
         max-height: 80px;
-
-        @include media(">phone", "<=tablet") {
-                max-height: 100%;
-                height: 50vh;
-            }
+    @include media(">phone", "<=tablet") {
+        width: 80px;
+        height: 20vh;
+        }
     }
     }
 }

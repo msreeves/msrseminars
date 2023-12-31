@@ -80,8 +80,7 @@ article {
                 }
 
                 @include media(">phone", "<=tablet") {
-                    object-fit: contain;
-                    height: 40vh;
+                    height: 60vh;
                 }
             }
         }
