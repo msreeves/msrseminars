@@ -12,18 +12,22 @@ article {
     }
 }
 
-article.post {
-    .entry-content {
-        p {
-            &:first-of-type {
-                &:first-letter {
-                    font-size: 8.5rem;
-                    font-weight: bold;
-                    color: $primary;
+article {
+    &.post {
+            .entry-content {
+                section {
+                    &:first-letter {
+                        font-size: 8.5rem;
+                        font-weight: bold;
+                        color: $primary;
+                    }
+                }
+    
+                ol {
+                    list-style: decimal;
                 }
             }
         }
-    }
 }
 
 

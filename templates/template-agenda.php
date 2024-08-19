@@ -26,11 +26,11 @@ get_header();
   <li class="active">
       <a href="#all" data-bs-toggle="tab" role="tab" aria-controls="all" aria-selected="all"><button><?php echo $post_name->name ?>All</button></a>
     </li>
-    <?php foreach($post_names as $post_name) { ?>
+    <?php foreach($post_names as $post_name) : ?>
       <li>
         <a href="#<?php echo $post_name->post_name ?>" data-bs-toggle="tab"><button><?php echo $post_name->post_title; ?></button></a>
       </li>
-    <? } ?>
+     <?php endforeach  ?>
   </ul>
 
   <!-- Tab panes -->
@@ -57,7 +57,7 @@ get_header();
 
     </div>
 
-    <?php foreach($post_names as $post_name) { ?>
+    <?php foreach($post_names as $post_name) : ?>
 
       <div class="tab-pane fade" id="<?php echo $post_name->post_name ?>">
         <?php 	
@@ -79,7 +79,7 @@ get_header();
         <?php endif; ?>
 
       </div>
-    <? }  ?>
+    <?php endforeach  ?>
 
   </div>
         </div>

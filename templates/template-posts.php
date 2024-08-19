@@ -17,18 +17,17 @@ get_header();
 </div>
 <div class="post-tabs">
 
-  <?php $post_categories = get_categories('parent=0'); // get all the categories ?>
-
   <!-- Nav tabs -->
   <ul class="nav nav-tabs">
   <li class="active">
-      <a href="#all" data-bs-toggle="tab" role="tab" aria-controls="all" aria-selected="all"><button><?php echo $post_category->name ?>All</button></a>
+      <a href="#all" data-bs-toggle="tab" role="tab" aria-controls="all" aria-selected="all"><button>All</button></a>
     </li>
-    <?php foreach($post_categories as $post_category) { ?>
+    <?php $post_categories = get_categories('parent=0'); ?> 
+	<?php foreach($post_categories as $post_category)  : ?>
       <li>
         <a href="#<?php echo $post_category->slug ?>" data-bs-toggle="tab"><button><?php echo $post_category->name ?></button></a>
       </li>
-    <? } ?>
+    <?php endforeach ?>
   </ul>
 
   <!-- Tab panes -->
@@ -57,7 +56,7 @@ get_header();
 
     </div>
 
-    <?php foreach($post_categories as $post_category) { ?>
+    <?php foreach($post_categories as $post_category) : ?>
 
       <div class="tab-pane fade" id="<?php echo $post_category->slug ?>">
         <?php 	
@@ -85,7 +84,7 @@ get_header();
         <?php endif; ?>
 
       </div>
-    <? }  ?>
+     <?php endforeach  ?>
 
   </div>
         </div>
