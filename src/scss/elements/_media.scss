@@ -1,0 +1,143 @@
+.sponsor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    img {
+        max-width: 150px;
+        margin: 0 10px 0 0;
+    }
+}
+
+.lb-caption {
+    display: none !important;
+}
+
+img {
+    height: 100%;
+    max-width: 100%;
+}
+
+.background-image {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.people {
+    .post {
+        .listing-image {
+            img {
+                height: 60vh;
+            }
+        }
+
+    }
+}
+
+article {
+    .listing-image {
+        img {
+            height: 100vh;
+
+            @include media(">phone", "<=tablet") {
+                height: 60vh;
+            }
+        }
+    }
+}
+
+  .icon {
+      text-align: center;
+
+      img {
+        margin: 0;
+        overflow: hidden;
+        width: 100%;
+        object-fit: contain;
+        height: 10vh;
+      }
+
+  }
+
+.listing-image {
+           img {
+               margin: 0;
+               object-fit: cover;
+               object-position: center;
+               overflow: hidden;
+               height: 60vh;
+               width: 100%;
+           }
+}
+
+.people {
+    .panel {
+        .listing-image {
+            img {
+                height: 70vh;
+
+                @include media(">tablet", "<=desktop") {
+                    object-fit: contain;
+                    height: 40vh;
+                }
+
+                @include media(">phone", "<=tablet") {
+                    height: 60vh;
+                }
+            }
+        }
+    }
+}
+
+.post {
+    .listing-image {
+        overflow: hidden;
+
+        img {
+            transition: transform .5s ease;
+
+            @include media(">tablet", "<=desktop") {
+                height: 40vh;
+                width: 320px;
+            }
+
+            @include media(">phone", "<=tablet") {
+                height: 40vh;
+            }
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.5);
+            }
+        }
+    }
+}
+
+.featured-media-inner {
+    img {
+        margin: 0;
+        object-fit: cover;
+        object-position: center;
+        overflow: hidden;
+        height: 60vh;
+        width: 100%;
+    }
+}
+
+.partner-listing-image {
+    img {
+        object-fit: contain;
+        object-position: center;
+        overflow: hidden;
+        height: 20vh;
+        max-width: 200px;
+    }
+}
+
+.fa-brands {
+    font-size: 3.2rem;
+    color: $primary;
+}

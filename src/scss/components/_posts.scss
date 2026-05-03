@@ -1,0 +1,198 @@
+article {
+    background-color: $white;
+    padding: 10px;
+
+    &.agenda {
+        background-color: $green;
+
+        .entry-content {
+            background-color: $white;
+            padding: 20px;
+        }
+    }
+}
+
+article {
+    &.post {
+            .entry-content {
+                section {
+                    &:first-letter {
+                        font-size: 8.5rem;
+                        font-weight: bold;
+                        color: $primary;
+                    }
+                }
+    
+                ol {
+                    list-style: decimal;
+                }
+            }
+        }
+}
+
+
+figure.featured-media {
+    margin: 0;
+}
+
+.entry-header {
+    max-width: 72rem;
+    width: calc(100% - 4rem);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.entry-content {
+    max-width: 58rem;
+    width: calc(100% - 4rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem 0;
+
+    @include media(">phone", "<=tablet") {
+            margin: 0;
+            width: 100%;
+        }
+
+    p {
+        font-size: 1.6rem;
+        line-height: 1.476;
+    }
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: $white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 0.2rem;
+
+    button {
+        width: 100%;
+    }
+
+    span {
+        background-color: $green;
+        color: $white;
+        margin: 0 5px 10px 0;
+        padding: 0 5px;
+        font-size: 18px;
+        display: inline-block;
+    }
+}
+
+.panelists {
+    display: flex;
+@include media(">phone", "<=tablet") {
+        display: block;
+        flex-direction: column;
+    }
+
+    a {
+        text-decoration: none;
+        color: $black;
+        &:hover {
+            text-decoration: none;
+        }
+    .panel {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+
+    img {
+        max-height: 80px;
+    @include media(">phone", "<=tablet") {
+        width: 80px;
+        height: 20vh;
+        }
+    }
+    }
+}
+}
+
+.post {
+    &.panel {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        @include media(">tablet", "<=desktop") {
+            flex-direction: row;
+            margin-bottom: 0;
+        }
+
+        @include media(">phone", "<=tablet") {
+            flex-direction: column;
+        }
+
+        .listing-text {
+            padding: 20px;
+
+            @include media(">tablet", "<=desktop") {
+                padding: 0 10px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.listing-text {
+    padding: 20px;
+}
+
+
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+    margin: 0;
+
+    li {
+        margin: 10px;
+    }
+}
+
+.pagination .nav-links {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.pagination a.page-numbers,
+span.page-numbers {
+    background: $primary;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    color: $white;
+    display: inline-block;
+    letter-spacing: 0.0333em;
+    line-height: 1.25;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 0 1px #ccc;
+    -webkit-transition: all 0.5s ease-in-out;
+    font-family: inherit;
+    margin: 0;
+    overflow: visible;
+    -webkit-appearance: button;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+           .comments-wrapper {
+               max-width: 58rem;
+               width: calc(100% - 4rem);
+               margin-left: auto;
+               margin-right: auto;
+               padding: 3rem 0;
+    
+               .comment-meta {
+                   background-color: $white;
+    
+                   .comment-author {
+                       display: none;
+                   }
+               }
+           }
