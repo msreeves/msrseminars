@@ -1,11 +1,90 @@
-$primary: #2AAA8A;
-$green: #478778;
-$black: #000;
-$white: #fff;
-$grey: #f2f2f2;
-$yellow: #FFFF00;
+// ============================================================
+// MSR Seminars — Design tokens
+// Dark prestige theme: near-black surfaces, teal accent
+// ============================================================
 
-$header-text: 'Anton', serif;
-$body-text: 'DM Sans', sans-serif;
+// --- Brand accent ---
+$teal:          #2AAA8A;   // seminars teal — primary accent
+$teal-light:    #4ec4a8;   // hover / highlight state
+$teal-dark:     #1e8a6e;   // active / pressed state
 
-@import 'node_modules/include-media/dist/_include-media';
+// Aliases for partials ported from msrawards (gold → teal)
+$gold:          $teal;
+$gold-light:    $teal-light;
+$gold-dark:     $teal-dark;
+
+// --- Surfaces ---
+$bg-dark:       #0f0f0f;   // page body background
+$surface:       #1a1a1a;   // cards, panels
+$surface-mid:   #252525;   // elevated panels, dropdowns
+$surface-high:  #303030;   // top-most surface (tooltips, modals)
+
+// --- Text ---
+$text-primary:  #f5f0ea;   // warm white — headings, body copy
+$text-secondary: #a09888;  // subheadings, meta
+$text-muted:    #6e6460;   // placeholders, disabled
+
+// --- Borders ---
+$border-subtle: #1e1e1e;
+$border-mid:    #2e2e2e;
+$border-strong: #3e3e3e;
+
+// --- Legacy aliases (referenced throughout theme SCSS, mapped to new palette) ---
+$primary:  $teal;          // accent — nav underlines, tags, CTAs, buttons
+$primary-light: $teal-light;
+$green:    #478778;        // legacy seminars green (agenda accents)
+$white:    #ffffff;        // pure white (Bootstrap internal use)
+$black:    #000000;        // pure black (Bootstrap internal use)
+$grey:     $surface-mid;   // previously light grey; now dark surface mid
+$purple:   $surface;       // previously lavender body bg; now dark surface
+$yellow:   #FFFF00;
+
+// --- Typography ---
+$display-text: 'Playfair Display', 'Anton', serif;  // hero / h1 display
+$header-text:  'Anton', serif;                       // section headings, nav
+$body-text:    'DM Sans', sans-serif;
+
+// --- Bootstrap 5 overrides (must come before @import bootstrap) ---
+$body-bg:           $bg-dark;
+$body-color:        $text-primary;
+$link-color:        $teal;
+$link-hover-color:  $teal-light;
+
+$font-family-base:  $body-text;
+
+$border-color:      $border-mid;
+$card-bg:           $surface;
+$card-border-color: $border-mid;
+
+$input-bg:              $surface;
+$input-color:           $text-primary;
+$input-border-color:    $border-strong;
+$input-focus-border-color: $teal;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba($teal, 0.2);
+$input-placeholder-color: $text-muted;
+
+$nav-link-color:        $text-primary;
+$nav-link-hover-color:  $teal-light;
+
+$pagination-bg:         $surface;
+$pagination-color:      $text-primary;
+$pagination-border-color: $border-mid;
+$pagination-hover-bg:   $surface-mid;
+$pagination-hover-color: $teal;
+$pagination-active-bg:  $teal;
+$pagination-active-color: $bg-dark;
+
+// --- Layout tokens ---
+:root {
+	--msr-content-max: 72rem;
+	--msr-section-y: clamp(2.5rem, 5vw, 5rem);
+	--msr-radius: 2px;
+
+	--msr-teal: #{$teal};
+	--msr-teal-light: #{$teal-light};
+	--msr-surface: #{$surface};
+	--msr-bg: #{$bg-dark};
+	--msr-text: #{$text-primary};
+}
+
+@import 'include-media/dist/_include-media';

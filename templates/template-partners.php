@@ -2,40 +2,35 @@
 /**
  * Template Name: Partners template
  *
- * @package WordPress
- * @subpackage msrseminars
- * @since msrseminars 1.0
+ * @package msrseminars
  */
 
 get_header();
 ?>
 
-<section>
-  <div class="container">
-      <div class="panel">
-        <?php the_title( '<h1>', '</h1>' ); ?>
-          <?php the_content(); ?>
-      </div> 
-         <?php 	
-      $args = array(
-        'post_type' => 'partner',
-        'posts_per_page' => -1,
-        'orderby' => 'title',
-        'order' => 'ASC'
-      );
-      $all_partners = new WP_Query( $args );		
-      ?>
-
-      <?php if ( $all_partners->have_posts() ) : ?>
-            <div class="d-flex flex-row flex-wrap">
-          <?php while ( $all_partners->have_posts() ) : $all_partners->the_post(); ?>	
-      <?php get_template_part( 'templates/partials/post-listing/listing-partner' ); ?>
-          <?php endwhile; ?>
-          <?php wp_reset_query() ?>
-      </div>
-      <?php endif; ?>
-
-</div>
+<main id="site-content" class="site-main">
+<section class="partner msrseminars-partners-page seminars-archive-listing">
+	<div class="container">
+		<header class="seminars-partners-intro">
+			<?php the_title( '<h1>', '</h1>' ); ?>
+			<p class="lead"><?php echo esc_html( msrseminars_get_partners_page_lead() ); ?></p>
+			<?php if ( get_the_content() ) : ?>
+				<div class="seminars-partners-intro__content msr-rich-text">
+					<?php the_content(); ?>
+				</div>
+			<?php endif; ?>
+		</header>
+		<?php msrseminars_render_partner_tier_grid(); ?>
+		<div class="seminars-partners-supplement">
+			<?php get_template_part( 'template-parts/forms/site-search' ); ?>
+		</div>
+		<?php
+		if ( function_exists( 'msrseminars_render_ecosystem_band' ) ) {
+			msrseminars_render_ecosystem_band();
+		}
+		?>
+	</div>
 </section>
+</main>
 <?php
 get_footer();

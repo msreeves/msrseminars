@@ -1,0 +1,164 @@
+// Empty states + post card typography
+
+.msr-empty-state {
+	color: $text-secondary;
+
+	&__title {
+		color: $text-primary;
+		font-family: $header-text;
+	}
+
+	&__message {
+		color: $text-secondary;
+	}
+
+	&--inline {
+		padding: 1.25rem 0;
+		text-align: center;
+	}
+}
+
+.post-card {
+	&__title {
+		color: $text-primary;
+		font-family: $header-text;
+	}
+
+	&__excerpt {
+		color: $text-secondary;
+	}
+}
+
+.msr-card-grid {
+	align-items: stretch;
+
+	> [class*='col-'] {
+		display: flex;
+	}
+
+	.post-card {
+		width: 100%;
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.post-card__body {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+
+		.btn {
+			margin-top: auto;
+			align-self: flex-start;
+		}
+	}
+}
+
+.seminars-archive-listing {
+	.msr-site-search {
+		padding: 1.5rem 0 !important;
+		margin-top: 0.5rem;
+	}
+
+	.msr-filter-tabs {
+		margin-top: 0.25rem;
+	}
+
+	&.msrseminars-partners-page .msr-site-search {
+		padding: 0 !important;
+		margin-top: 0;
+	}
+}
+
+.seminars-archive-intro,
+.seminars-topics-intro {
+	margin-bottom: 1.25rem;
+
+	h1 {
+		margin-bottom: 0.5rem;
+		color: $text-primary;
+		font-family: $display-text;
+	}
+
+	&__description {
+		color: $text-secondary;
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__back a {
+		color: $teal-light;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
+}
+
+.seminars-topics-archive {
+	padding-bottom: 2.5rem;
+
+	.msr-site-search {
+		max-width: 28rem;
+	}
+}
+
+// Phase 18 — delegate journey + sponsor tiers
+
+.seminars-delegate-journey {
+	margin: 2rem 0 2.5rem;
+
+	&__title {
+		font-family: $display-text;
+		color: $text-primary;
+	}
+
+	&__lead {
+		color: $text-secondary;
+		max-width: 42rem;
+		margin-inline: auto;
+	}
+
+	&__steps {
+		display: grid;
+		gap: 1rem;
+
+		@include media('>=tablet') {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	&__step {
+		height: 100%;
+		padding: 1.25rem;
+	}
+
+	&__step-label {
+		color: $gold-light;
+		letter-spacing: 0.08em;
+	}
+
+	&__step-title {
+		color: $text-primary;
+		font-family: $header-text;
+	}
+
+	&__step-copy {
+		color: $text-secondary;
+	}
+
+	&__cta {
+		margin-bottom: 0;
+	}
+}
+
+.msr-rich-text {
+	> :last-child {
+		margin-bottom: 0;
+	}
+}

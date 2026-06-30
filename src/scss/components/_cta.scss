@@ -1,14 +1,36 @@
 .cta {
-    background-color: #839dff;
-    background-size: cover;
-    background-repeat: no-repeat;
+	background-color: $surface;
+	border-top: 1px solid $border-mid;
+	border-bottom: 1px solid $border-mid;
 
-    >.container {
-        position: relative;
-        z-index: 2;
-    }
+	.seminars-cta-panel {
+		background-color: $surface-mid;
+		border-top: 2px solid $gold;
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+	}
 
-    .panel {
-        background-color: $white;
-    }
+	.seminars-cta-panel__media {
+		border-radius: 4px;
+		overflow: hidden;
+		background: $surface;
+		border: 1px solid $border-mid;
+	}
+
+	.seminars-cta-panel__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		max-height: 22rem;
+		object-fit: cover;
+		margin: 0;
+	}
+
+	&--no-media .seminars-cta-panel__body {
+		max-width: 40rem;
+		margin-inline: auto;
+	}
+
+	.seminars-cta-panel__body .seminars-ctas {
+		justify-content: center;
+	}
 }

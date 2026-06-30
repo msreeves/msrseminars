@@ -36,7 +36,7 @@ if( $categories ){
 ?>
                  </p>  
 				 <?php
-if(in_category(10)){
+if ( msrseminars_is_sponsored_post() ) {
 ?>
 <h3> <i>This is Sponsored content</i></h3>
 <?php } ?> 
@@ -50,7 +50,7 @@ if(in_category(10)){
 		if ( 'post' === get_post_type() ) :
 			?>
 			<p class="entry-meta">
-				<i class="fa fa-clock fa-2xl"></i> 
+				<i class="fa-solid fa-clock fa-2xl" aria-hidden="true"></i> 
                 <?php echo get_the_date(); ?>
 		</p><!-- .entry-meta -->
 		<?php endif; ?>

@@ -1,14 +1,8 @@
 <?php
 /**
- * The default template for displaying content
+ * Agenda single content.
  *
- * Used for both singular and index.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage msrseminars
- * @since msrseminars 1.0
+ * @package msrseminars
  */
 
 ?>
@@ -20,40 +14,65 @@
 			<section class="post-inner">
 		<div class="entry-content">
 			<?php the_title( '<h1>', '</h1>' ); ?>
-			<?php print get_field('information') ?> 
+			<?php
+			$information = get_field( 'information' );
+			if ( $information ) {
+				echo '<div class="msr-rich-text">';
+				msrseminars_render_rich_text( $information );
+				echo '</div>';
+			}
+			?>
 				<?php get_template_part( 'templates/partials/featured-image' ); ?>
-				<section>
+				<section aria-labelledby="seminars-agenda-sponsors-heading">
 					<?php
-    $featured_posts = get_field('sponsors');
-    if( $featured_posts ): ?>
-    <h3> Sponsors:</h3>
+					$featured_posts = get_field( 'sponsors' );
+					if ( $featured_posts ) :
+						?>
+    <h2 id="seminars-agenda-sponsors-heading" class="h5"><?php esc_html_e( 'Track sponsors', 'msrseminars' ); ?></h2>
      <div class="sponsor">
-        <?php foreach( $featured_posts as $featured_post ): 
-        ?>  
-                       <?php
-$sponsor_link = get_field( 'link', $featured_post );
-$sponsor_url  = '';
-if ( is_array( $sponsor_link ) && ! empty( $sponsor_link['url'] ) ) {
-	$sponsor_url = (string) $sponsor_link['url'];
-} elseif ( is_string( $sponsor_link ) ) {
-	$sponsor_url = $sponsor_link;
-}
-    ?>
-    <a href="<?php echo esc_url( $sponsor_url ); ?>"><?php $image = wp_get_attachment_image_src(
-                                                   get_post_thumbnail_id(
-                                                       $featured_post
-                                                   ),
-                                               ); ?>
-                                                <img src="<?php echo isset( $image[0] ) ? esc_url( $image[0] ) : ''; ?>" alt="<?php the_post_thumbnail_caption(); ?>"> </a> 
-            <hr></hr>
+        <?php
+		foreach ( $featured_posts as $featured_post ) :
+			$sponsor_name = get_the_title( $featured_post );
+			$sponsor_link = get_field( 'link', $featured_post );
+			$sponsor_url  = '';
+			if ( is_array( $sponsor_link ) && ! empty( $sponsor_link['url'] ) ) {
+				$sponsor_url = (string) $sponsor_link['url'];
+			} elseif ( is_string( $sponsor_link ) ) {
+				$sponsor_url = $sponsor_link;
+			}
+			if ( '' === $sponsor_url ) {
+				continue;
+			}
+			$link_label = ( is_array( $sponsor_link ) && ! empty( $sponsor_link['title'] ) )
+				? (string) $sponsor_link['title']
+				: $sponsor_name;
+			$thumb_id   = (int) get_post_thumbnail_id( $featured_post );
+			$image      = $thumb_id ? wp_get_attachment_image_src( $thumb_id, 'single-post-thumbnail' ) : false;
+			$img_url    = ( is_array( $image ) && ! empty( $image[0] ) ) ? (string) $image[0] : '';
+			?>
+    <a href="<?php echo esc_url( $sponsor_url ); ?>" aria-label="<?php echo esc_attr( $link_label ); ?>">
+        <?php if ( $img_url ) : ?>
+        <img src="<?php echo esc_url( $img_url ); ?>" alt="" loading="lazy" decoding="async" />
+        <?php else : ?>
+        <span class="screen-reader-text"><?php echo esc_html( $link_label ); ?></span>
+        <?php endif; ?>
+    </a>
+            <hr>
     <?php endforeach; ?>
         </div>
     <?php endif; ?>
-		</section>	
+		</section>
 		</div><!-- .entry-content -->
 
 	</section><!-- .post-inner -->
-	 <?php get_template_part( 'templates/partials/post-listing/listing-agenda' ); ?>
+	<section class="seminars-agenda-schedule" aria-labelledby="seminars-agenda-schedule-heading">
+		<h2 id="seminars-agenda-schedule-heading" class="h5 visually-hidden"><?php esc_html_e( 'Schedule', 'msrseminars' ); ?></h2>
+	 <?php
+	 set_query_var( 'msr_agenda_schedule_rows', msrseminars_get_sorted_schedule_rows( get_the_ID() ) );
+	 get_template_part( 'template-parts/agenda/schedule' );
+	 set_query_var( 'msr_agenda_schedule_rows', null );
+	 ?>
+	</section>
 	</div>
 		</div>
 	<div class="section-inner">
@@ -74,10 +93,6 @@ if ( is_array( $sponsor_link ) && ! empty( $sponsor_link['url'] ) ) {
 
 	<?php
 
-	/*
-	 * Output comments wrapper if it's a post, or if comments are open,
-	 * or if there's a comment number – and check for password.
-	 */
 	if ( ( is_single() || is_page() ) && ( comments_open() || get_comments_number() ) && ! post_password_required() ) {
 		?>
 

@@ -1,0 +1,221 @@
+{
+    "key": "group_msr_seminars_agenda",
+    "title": "Seminars agenda",
+    "fields": [
+        {
+            "key": "field_msr_agenda_label",
+            "label": "Day label",
+            "name": "agenda_label",
+            "type": "text",
+            "instructions": "Short label for tabs, e.g. Day 1.",
+            "required": 0,
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_msr_agenda_date",
+            "label": "Agenda date",
+            "name": "agenda_date",
+            "type": "date_picker",
+            "instructions": "Conference day used for session datetime sorting.",
+            "required": 0,
+            "display_format": "j M Y",
+            "return_format": "Ymd",
+            "first_day": 1,
+            "wrapper": { "width": "33" }
+        },
+        {
+            "key": "field_msr_agenda_sort_order",
+            "label": "Sort order",
+            "name": "agenda_sort_order",
+            "type": "number",
+            "instructions": "Lower numbers appear first on the agenda page.",
+            "required": 0,
+            "default_value": 10,
+            "min": 0,
+            "step": 1,
+            "wrapper": { "width": "34" }
+        },
+        {
+            "key": "field_6537626a6d9a7",
+            "label": "Information",
+            "name": "information",
+            "type": "wysiwyg",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1
+        },
+        {
+            "key": "field_6537630b889eb",
+            "label": "Sponsors",
+            "name": "sponsors",
+            "type": "post_object",
+            "required": 0,
+            "post_type": [ "partner" ],
+            "return_format": "object",
+            "multiple": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_653669bcbcb33",
+            "label": "Schedule",
+            "name": "schedule",
+            "type": "repeater",
+            "required": 0,
+            "layout": "row",
+            "button_label": "Add session",
+            "sub_fields": [
+                {
+                    "key": "field_msr_session_start",
+                    "label": "Session start",
+                    "name": "session_start",
+                    "type": "date_time_picker",
+                    "required": 0,
+                    "display_format": "j M Y g:i a",
+                    "return_format": "Y-m-d H:i:s",
+                    "first_day": 1,
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_msr_session_end",
+                    "label": "Session end",
+                    "name": "session_end",
+                    "type": "date_time_picker",
+                    "required": 0,
+                    "display_format": "j M Y g:i a",
+                    "return_format": "Y-m-d H:i:s",
+                    "first_day": 1,
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_msr_session_format",
+                    "label": "Format",
+                    "name": "session_format",
+                    "type": "select",
+                    "required": 0,
+                    "choices": {
+                        "keynote": "Keynote",
+                        "panel": "Panel",
+                        "workshop": "Workshop",
+                        "break": "Break",
+                        "networking": "Networking"
+                    },
+                    "default_value": "panel",
+                    "return_format": "value",
+                    "ui": 1,
+                    "wrapper": { "width": "33" }
+                },
+                {
+                    "key": "field_msr_session_topic",
+                    "label": "Topic",
+                    "name": "session_topic",
+                    "type": "select",
+                    "instructions": "Cross-cutting theme for filters (independent of track).",
+                    "required": 0,
+                    "choices": {
+                        "ai-innovation": "AI & Innovation",
+                        "governance": "Governance & Risk",
+                        "people-culture": "People & Culture",
+                        "sustainability": "Sustainability",
+                        "leadership": "Leadership",
+                        "digital": "Digital Transformation"
+                    },
+                    "default_value": "",
+                    "allow_null": 1,
+                    "return_format": "value",
+                    "ui": 1,
+                    "wrapper": { "width": "34" }
+                },
+                {
+                    "key": "field_653669d9bcb34",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": { "width": "50" }
+                },
+                {
+                    "key": "field_653669ecbcb35",
+                    "label": "About",
+                    "name": "about",
+                    "type": "wysiwyg",
+                    "required": 0,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0
+                },
+                {
+                    "key": "field_65366a21bcb36",
+                    "label": "Time (legacy)",
+                    "name": "time",
+                    "type": "group",
+                    "required": 0,
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_65366a81bcb37",
+                            "label": "Start",
+                            "name": "start",
+                            "type": "text",
+                            "required": 0
+                        },
+                        {
+                            "key": "field_65366a97bcb38",
+                            "label": "Finish",
+                            "name": "finish",
+                            "type": "text",
+                            "required": 0
+                        }
+                    ]
+                },
+                {
+                    "key": "field_65366b3cbcb39",
+                    "label": "Judicators",
+                    "name": "judicators",
+                    "type": "post_object",
+                    "post_type": [ "panelist" ],
+                    "return_format": "object",
+                    "multiple": 1,
+                    "ui": 1
+                },
+                {
+                    "key": "field_65366b52bcb3a",
+                    "label": "Panelists",
+                    "name": "panelists",
+                    "type": "post_object",
+                    "post_type": [ "panelist" ],
+                    "return_format": "object",
+                    "multiple": 1,
+                    "ui": 1
+                },
+                {
+                    "key": "field_6537a3bbe8133",
+                    "label": "Sponsor",
+                    "name": "sponsor",
+                    "type": "post_object",
+                    "post_type": [ "partner" ],
+                    "return_format": "object",
+                    "multiple": 1,
+                    "ui": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "agenda"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Day/track containers, session schedule, and cross-cutting topics.",
+    "show_in_rest": 0
+}

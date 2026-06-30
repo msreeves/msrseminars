@@ -2,69 +2,64 @@
 /**
  * The template for displaying search results pages
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
  * @package msrseminars
  */
 
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
+<main id="site-content" class="site-main">
+	<section>
+		<div class="container">
+			<?php if ( have_posts() ) : ?>
+			<header class="page-header panel">
 				<h1 class="page-title">
 					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( '%s', 'msrseminars' ), '<br>' . get_search_query() . '</br>' );
+					printf(
+						/* translators: %s: search query */
+						esc_html__( 'Search results for “%s”', 'msrseminars' ),
+						esc_html( get_search_query() )
+					);
 					?>
 				</h1>
-                    <h3 class="text-center"><?php
-  global $wp_query;
-  if($wp_query->found_posts < 2) {
-    $result = "result";
-  } else {
-    $result = "results";
-  }
-    echo $wp_query->found_posts . " " . $result . " found.";
-    ?></h3>
-			</header><!-- .page-header -->
-
-			<div class="container">
-			<div class="row">
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-				
-
-			endwhile;
-
-			echo '<section>';
-			the_posts_pagination( array(
-'mid_size' => 2,
-'prev_text' => __( 'Previous', 'textdomain' ),
-'next_text' => __( 'Next', 'textdomain' ),
-) );
-			echo '</section>';
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
+				<p class="text-center" role="status">
+					<?php
+					global $wp_query;
+					$found = (int) $wp_query->found_posts;
+					printf(
+						/* translators: %d: number of results */
+						esc_html( _n( '%d result found.', '%d results found.', $found, 'msrseminars' ) ),
+						$found
+					);
+					?>
+				</p>
+			</header>
+			<?php get_template_part( 'template-parts/forms/site-search' ); ?>
+			<div class="row msr-card-grid">
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/content', 'search' );
+				endwhile;
+				?>
+			</div>
+			<nav class="msr-search-pagination" aria-label="<?php esc_attr_e( 'Search results pages', 'msrseminars' ); ?>">
+				<?php
+				the_posts_pagination(
+					array(
+						'mid_size'  => 2,
+						'prev_text' => __( 'Previous', 'msrseminars' ),
+						'next_text' => __( 'Next', 'msrseminars' ),
+					)
+				);
+				?>
+			</nav>
+			<?php else : ?>
+			<?php get_template_part( 'template-parts/content', 'none' ); ?>
+			<?php endif; ?>
+		</div>
+	</section>
+</main>
 
 <?php
 get_footer();

@@ -4,48 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="profile" href="https://gmpg.org/xfn/11">
-		   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-		  <script type="text/javascript">
-    		var wp_ajax = "<?php echo admin_url('admin-ajax.php'); ?>";
-			</script>   
-        <?php wp_head ();?>
+	        <?php wp_head(); ?>
 </head>
-<body>
-     <?php get_template_part( 'templates/partials/leaderboard/header' ); ?>	
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+	<a class="seminars-skip-link" href="#site-content"><?php esc_html_e( 'Skip to content', 'msrseminars' ); ?></a>
+	<?php
+	if ( function_exists( 'msrseminars_show_leaderboard_ads' ) && msrseminars_show_leaderboard_ads() ) {
+		get_template_part( 'templates/partials/leaderboard/header' );
+	}
+	?>
 	<header id="masthead" class="site-header">
-    <nav class="navbar navbar-expand-lg navbar-light p-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="<?php echo home_url(); ?>">
+    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="<?php esc_attr_e( 'Primary', 'msrseminars' ); ?>">
+        <div class="container-fluid seminars-navbar__inner d-flex align-items-center flex-wrap">
+              <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
                 <?php
-			$custom_logo_id  = (int) get_theme_mod( 'custom_logo' );
-			$custom_logo_url = $custom_logo_id ? wp_get_attachment_image_url( $custom_logo_id, 'full' ) : '';
-			if ( $custom_logo_url ) {
-				echo '<img src="' . esc_url( $custom_logo_url ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '">';
+			$custom_logo_id = (int) get_theme_mod( 'custom_logo' );
+			if ( $custom_logo_id ) {
+				echo wp_get_attachment_image(
+					$custom_logo_id,
+					'full',
+					false,
+					array(
+						'class'    => 'custom-logo',
+						'alt'      => get_bloginfo( 'name' ),
+						'loading'  => 'eager',
+						'decoding' => 'async',
+					)
+				);
 			}
 			?></a>
-             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <button class="navbar-toggler collapsed ms-auto d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#msrSeminarsMobileNav"
+          aria-controls="msrSeminarsMobileNav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'msrseminars' ); ?>">
           <span class="icon-bar top-bar"></span>
           <span class="icon-bar middle-bar"></span>
           <span class="icon-bar bottom-bar"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav ms-auto">
-                    <?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-                    'container_id' => 'cssmenu', 
-	                'walker' => new CSS_Menu_Walker()
-				)
-			); ?>
-                </div>
-            </div>
+        <div class="offcanvas offcanvas-end msr-seminars-mobile-nav ms-lg-auto" tabindex="-1" id="msrSeminarsMobileNav" aria-labelledby="msrSeminarsMobileNavLabel">
+			<div class="offcanvas-header d-lg-none">
+				<p class="offcanvas-title h6 mb-0" id="msrSeminarsMobileNavLabel"><?php esc_html_e( 'Menu', 'msrseminars' ); ?></p>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="<?php esc_attr_e( 'Close', 'msrseminars' ); ?>"></button>
+			</div>
+			<div class="offcanvas-body">
+				<div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-2 ms-lg-auto w-100">
+					<div class="navbar-nav flex-grow-1 flex-lg-grow-0">
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'menu-1',
+								'menu_id'        => 'primary-menu',
+								'menu_class'     => 'seminars-nav__list menu',
+								'container'      => 'div',
+								'container_id'   => 'cssmenu',
+								'container_class'=> 'seminars-nav menu-header-container',
+								'walker'         => new CSS_Menu_Walker(),
+								'fallback_cb'    => 'msrseminars_primary_menu_fallback',
+							)
+						);
+						?>
+					</div>
+					<?php if ( function_exists( 'msrseminars_render_header_cta' ) ) : ?>
+						<?php msrseminars_render_header_cta(); ?>
+					<?php elseif ( function_exists( 'msr_render_primary_cta' ) ) : ?>
+						<?php msr_render_primary_cta(); ?>
+					<?php endif; ?>
+				</div>
+			</div>
+        </div>
         </div>
     </nav>
 	</header>
 
-    

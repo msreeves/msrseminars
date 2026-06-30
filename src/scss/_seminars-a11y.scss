@@ -1,0 +1,171 @@
+// Accessibility — focus rings, skip link, touch targets (dark prestige theme)
+body.msr-seminars {
+	--seminars-focus-ring: #{$teal};
+	--seminars-focus-offset: 3px;
+}
+
+.seminars-skip-link {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	z-index: 2000;
+	padding: 0.65rem 1rem;
+	background: $bg-dark;
+	color: $text-primary;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: var(--msr-radius, 2px);
+	transform: translateY(-140%);
+	transition: transform 0.2s ease;
+
+	&:focus,
+	&:focus-visible {
+		transform: translateY(0);
+		outline: 2px solid var(--seminars-focus-ring, #{$teal});
+		outline-offset: var(--seminars-focus-offset, 3px);
+	}
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+body.msr-seminars {
+	a:focus:not(:focus-visible),
+	button:focus:not(:focus-visible),
+	.btn:focus:not(:focus-visible),
+	input:focus:not(:focus-visible),
+	select:focus:not(:focus-visible),
+	textarea:focus:not(:focus-visible),
+	.seminars-filter-bar__tab:focus:not(:focus-visible) {
+		outline: none;
+		box-shadow: none;
+	}
+
+	a:focus-visible,
+	button:focus-visible,
+	.btn:focus-visible,
+	input:focus-visible,
+	select:focus-visible,
+	textarea:focus-visible,
+	.form-control:focus-visible,
+	.seminars-filter-bar__link:focus-visible,
+	.seminars-filter-bar__tab:focus-visible,
+	.seminars-agenda-filters__button:focus-visible,
+	.seminars-agenda-calendar__link:focus-visible,
+	.seminars-agenda-speakers__chip:focus-visible,
+	.seminars-nav__toggle:focus-visible,
+	.seminars-nav__link:focus-visible,
+	.seminars-nav__sublink:focus-visible,
+	.navbar-toggler:focus-visible,
+	.pagination a.page-numbers:focus-visible {
+		outline: 2px solid var(--seminars-focus-ring, #{$teal});
+		outline-offset: var(--seminars-focus-offset, 3px);
+	}
+
+	.btn,
+	.btn-sm,
+	.btn-load-more,
+	.msr-primary-cta__main,
+	.navbar-brand,
+	.seminars-filter-bar__link,
+	.seminars-filter-bar__tab,
+	.post-card__categories a,
+	.seminars-site-footer__links a,
+	.seminars-site-footer__social-link,
+	[id^='seminars-carousel-'] a,
+	.msr-agenda-tabs .nav-link,
+	.msr-filter-tabs .seminars-filter-bar__tab,
+	.msr-filter-tabs button.nav-link,
+	.seminars-agenda-filters__button,
+	.seminars-agenda-calendar__link,
+	.seminars-agenda-speakers__chip,
+	.seminars-agenda-session__toggle,
+	.sponsor > a,
+	.listing-text a,
+	.seminars-topic-chip,
+	.pagination a.page-numbers {
+		min-height: 2.75rem;
+	}
+
+	.sponsor > a,
+	.seminars-site-footer__social-link {
+		min-width: 2.75rem;
+	}
+
+	@include media('<desktop') {
+		.seminars-nav__link,
+		.seminars-nav__sublink,
+		.seminars-nav__toggle {
+			min-height: 2.75rem;
+		}
+	}
+
+	.listing-text a,
+	.seminars-topic-chip,
+	.post-card__categories a {
+		padding: 0.35rem 0.65rem;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.btn,
+	.btn-sm,
+	.btn-load-more,
+	.msr-primary-cta__main,
+	.navbar-brand,
+	.seminars-filter-bar__link,
+	.seminars-filter-bar__tab,
+	.seminars-agenda-filters__button,
+	.seminars-agenda-calendar__link,
+	.seminars-agenda-speakers__chip,
+	.seminars-agenda-session__toggle,
+	.seminars-nav__link,
+	.seminars-nav__sublink,
+	.seminars-nav__toggle,
+	.post-card__categories a,
+	.seminars-site-footer__links a,
+	.seminars-site-footer__social-link {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.seminars-topic-chip {
+		display: inline-flex;
+	}
+
+	.btn,
+	.btn-load-more,
+	.msr-primary-cta__main {
+		justify-content: center;
+		padding-block: 0.65rem;
+	}
+
+	.seminars-site-footer__links a {
+		padding-block: 0.35rem;
+	}
+
+	.seminars-site-footer__social-link {
+		min-width: 2.75rem;
+		justify-content: center;
+		padding: 0.35rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.msr-seminars {
+		.msr-reveal {
+			opacity: 1 !important;
+			transform: none !important;
+		}
+	}
+}

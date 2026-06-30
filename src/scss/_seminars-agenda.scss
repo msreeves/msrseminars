@@ -1,0 +1,304 @@
+// Seminars agenda — day-first nav, timeline cards, speaker chips, mobile collapse
+
+.seminars-agenda-day-nav {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background: $surface;
+	padding: 0.75rem 0 0;
+	margin: 0 0 0.5rem;
+	border-bottom: 1px solid $border-mid;
+
+	&__list {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: thin;
+		gap: 0.35rem;
+		padding-bottom: 0.25rem;
+	}
+}
+
+.seminars-agenda-day-group__heading {
+	color: $text-primary;
+	margin-bottom: 1.25rem;
+}
+
+.seminars-agenda-track {
+	margin-bottom: 2rem;
+
+	&__heading {
+		color: $text-secondary;
+		font-size: 0.95rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		margin-bottom: 1rem;
+		text-transform: uppercase;
+	}
+}
+
+.seminars-agenda-timeline {
+	display: grid;
+	gap: 1rem;
+	position: relative;
+}
+
+.seminars-agenda-session {
+	display: grid;
+	gap: 0.75rem 1rem;
+	grid-template-columns: 4.5rem minmax(0, 1fr);
+	position: relative;
+
+	&::before {
+		background: $border-mid;
+		bottom: -0.5rem;
+		content: '';
+		left: 2.15rem;
+		position: absolute;
+		top: 0;
+		width: 2px;
+	}
+
+	&:last-child::before {
+		bottom: 50%;
+	}
+
+	&__rail {
+		padding-top: 1rem;
+		position: relative;
+		text-align: right;
+		z-index: 1;
+	}
+
+	&__rail-time {
+		color: $text-primary;
+		display: block;
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	&__body {
+		min-width: 0;
+	}
+
+	&__card {
+		border: 1px solid $border-mid;
+		padding: 1rem 1.25rem;
+	}
+
+	&__card--break {
+		background: rgba($text-secondary, 0.06);
+	}
+
+	&__header {
+		align-items: flex-start;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+		justify-content: space-between;
+	}
+
+	&__summary {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	&__time {
+		color: $text-secondary;
+		font-size: 0.95rem;
+		font-weight: 600;
+	}
+
+	&__title {
+		color: $text-primary;
+	}
+
+	&__format {
+		flex: 0 0 auto;
+	}
+
+	&__toggle {
+		border: 0;
+		color: $text-primary;
+		padding: 0;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: $text-primary;
+			text-decoration: none;
+		}
+	}
+
+	&__toggle-time {
+		color: $text-secondary;
+		display: block;
+		font-size: 0.85rem;
+		font-weight: 600;
+		margin-bottom: 0.15rem;
+	}
+
+	&__toggle-title {
+		display: block;
+		font-size: 1.05rem;
+		font-weight: 600;
+		line-height: 1.35;
+	}
+
+	&__details-inner {
+		padding-top: 0.75rem;
+	}
+
+	&__about {
+		margin-bottom: 1rem;
+	}
+
+	&__people,
+	&__sponsors {
+		margin-top: 1rem;
+	}
+
+	&__sponsor-logo {
+		max-height: 2.5rem;
+		width: auto;
+	}
+}
+
+.seminars-session-format {
+	font-size: 0.75rem;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.seminars-session-topic {
+	font-size: 0.75rem;
+	letter-spacing: 0.02em;
+}
+
+.seminars-agenda-session__badges {
+	flex: 0 0 auto;
+	margin-left: auto;
+}
+
+.seminars-agenda-speakers {
+	&__chip {
+		align-items: center;
+		background: rgba($text-secondary, 0.08);
+		border-radius: 999px;
+		color: $text-primary;
+		display: inline-flex;
+		gap: 0.45rem;
+		min-height: 2.75rem;
+		padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+		text-decoration: none;
+		transition: background-color 0.15s ease;
+
+		&:hover,
+		&:focus {
+			background: rgba($text-secondary, 0.14);
+			color: $text-primary;
+			text-decoration: none;
+		}
+	}
+
+	&__avatar {
+		border-radius: 50%;
+		height: 1.75rem;
+		object-fit: cover;
+		width: 1.75rem;
+	}
+
+	&__name {
+		font-size: 0.875rem;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+}
+
+@include media('>=desktop') {
+	.seminars-agenda-session__details.collapse {
+		display: block;
+		height: auto !important;
+		visibility: visible;
+	}
+
+	.seminars-agenda-session__rail {
+		display: block;
+	}
+}
+
+@include media('<desktop') {
+	.seminars-agenda-session {
+		grid-template-columns: minmax(0, 1fr);
+
+		&::before {
+			display: none;
+		}
+
+		&__rail {
+			display: none;
+		}
+	}
+}
+
+.seminars-agenda-filters {
+	margin-bottom: 1.5rem;
+
+	&__group + &__group {
+		margin-top: 0.75rem;
+	}
+
+	&__button {
+		appearance: none;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+		font: inherit;
+		min-height: 2.75rem;
+		padding: 0.5rem 0.85rem;
+	}
+
+	&__status {
+		color: $text-secondary;
+		font-size: 0.9rem;
+		margin: 0.75rem 0 0;
+	}
+
+	&__count {
+		color: $text-primary;
+	}
+
+	&__empty {
+		color: $text-secondary;
+		margin: 0.75rem 0 0;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+}
+
+.seminars-agenda-calendar {
+	margin-top: 1rem;
+
+	&__link {
+		border: 1px solid $border-mid;
+		border-radius: 999px;
+		color: $text-primary;
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.875rem;
+		font-weight: 600;
+		min-height: 2.75rem;
+		padding: 0.5rem 0.95rem;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			background: rgba($text-secondary, 0.08);
+			color: $text-primary;
+			text-decoration: none;
+		}
+	}
+}

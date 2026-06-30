@@ -9,11 +9,62 @@
 	define( '_S_VERSION', '1.0.0' );
 }
 
+require_once get_template_directory() . '/inc/setup.php';
+require_once get_template_directory() . '/inc/msr-seminars-filter-bar.php';
+require_once get_template_directory() . '/inc/msr-seminars-ecosystem.php';
+require_once get_template_directory() . '/inc/msr-seminars-programme.php';
+require_once get_template_directory() . '/inc/msr-seminars-admin.php';
+require_once get_template_directory() . '/inc/msr-seminars-acf.php';
+require_once get_template_directory() . '/inc/msr-seminars-options.php';
+require_once get_template_directory() . '/inc/media.php';
+require_once get_template_directory() . '/inc/msr-seminars-perf.php';
+require_once get_template_directory() . '/inc/msr-seminars-portfolio.php';
+require_once get_template_directory() . '/inc/msr-seminars-people.php';
+require_once get_template_directory() . '/inc/msr-seminars-content.php';
+require_once get_template_directory() . '/inc/msr-seminars-agenda.php';
+require_once get_template_directory() . '/inc/msr-seminars-search.php';
+require_once get_template_directory() . '/inc/msr-seminars-footer.php';
+require_once get_template_directory() . '/inc/msr-seminars-seo.php';
+
 require_once('inc/controllers/cpt.php');
 require_once('inc/controllers/cpt-admin.php');
-require_once('inc/controllers/search.php');
 require_once('inc/controllers/wp-menus.php');
-require_once('inc/controllers/scripts-styles.php');
+require_once('inc/controllers/script-styles.php');
+
+/**
+ * Output ACF / legacy rich text without double-escaping HTML.
+ *
+ * @param mixed $content HTML or plain text.
+ * @return void
+ */
+function msrseminars_render_rich_text( $content ) {
+	$content = trim( (string) $content );
+	if ( '' === $content ) {
+		return;
+	}
+	echo wp_kses_post( $content );
+}
+
+/**
+ * Primary CTA link styled as button (no nested button).
+ *
+ * @param array{url?: string, title?: string, target?: string} $link ACF link array.
+ * @param string                                               $class Extra classes.
+ * @return void
+ */
+function msrseminars_render_cta_link( $link, $class = 'btn btn-primary' ) {
+	if ( ! is_array( $link ) || empty( $link['url'] ) || empty( $link['title'] ) ) {
+		return;
+	}
+	$target = ! empty( $link['target'] ) ? (string) $link['target'] : '_self';
+	printf(
+		'<a class="%s" href="%s" target="%s">%s</a>',
+		esc_attr( $class ),
+		esc_url( (string) $link['url'] ),
+		esc_attr( $target ),
+		esc_html( (string) $link['title'] )
+	);
+}
 
 /**
  * Normalize ACF image / icon field values (ID, array, serialized, or URL string) to a URL.
@@ -55,6 +106,218 @@ function msrseminars_acf_image_url( $value ) {
 	return '';
 }
 
+/**
+ * Sanitize a Font Awesome icon class string for safe output.
+ *
+ * @param mixed $value Raw ACF value.
+ * @return string Space-separated FA classes or empty string.
+ */
+function msrseminars_sanitize_fa_icon_class( $value ) {
+	$value = trim( (string) $value );
+	if ( '' === $value ) {
+		return '';
+	}
+
+	$allowed = array();
+	foreach ( preg_split( '/\s+/', $value ) as $part ) {
+		if ( preg_match( '/^fa-(solid|regular|brands|sharp|light|thin|duotone)$/', $part )
+			|| preg_match( '/^fa-[a-z0-9-]+$/', $part ) ) {
+			$allowed[] = $part;
+		}
+	}
+
+	return implode( ' ', $allowed );
+}
+
+/**
+ * Resolve an award taxonomy value (WP_Term, ID, or slug) to a term slug.
+ *
+ * @param mixed $term Term object, ID, or slug string.
+ * @return string Term slug or empty string.
+ */
+function msrseminars_award_term_slug( $term ) {
+	if ( $term instanceof WP_Term ) {
+		return (string) $term->slug;
+	}
+	if ( is_numeric( $term ) ) {
+		$resolved = get_term( (int) $term, 'award' );
+		return ( $resolved && ! is_wp_error( $resolved ) ) ? (string) $resolved->slug : '';
+	}
+	if ( is_string( $term ) ) {
+		return trim( $term );
+	}
+	return '';
+}
+
+/**
+ * Allowed HTML tags for oembed video iframes.
+ *
+ * @return array<string, array<string, bool>>
+ */
+function msrseminars_video_embed_allowed_html() {
+	return array(
+		'iframe' => array(
+			'src'             => true,
+			'width'           => true,
+			'height'          => true,
+			'frameborder'     => true,
+			'allow'           => true,
+			'allowfullscreen' => true,
+			'title'           => true,
+			'referrerpolicy'  => true,
+		),
+	);
+}
+
+/**
+ * Sanitize oembed iframe HTML for front-end output.
+ *
+ * @param string $html Embed markup.
+ * @return string
+ */
+function msrseminars_kses_video_embed( $html ) {
+	return wp_kses( (string) $html, msrseminars_video_embed_allowed_html() );
+}
+
+/**
+ * Render an ACF oembed / video field value as safe embed HTML.
+ *
+ * @param mixed $video Raw field value (iframe HTML, URL, or corrupted oembed string).
+ * @return string Embed HTML or empty string.
+ */
+function msrseminars_render_video_embed( $video ) {
+	$video = trim( (string) $video );
+	if ( '' === $video ) {
+		return '';
+	}
+
+	if ( false !== stripos( $video, '<iframe' ) ) {
+		if ( preg_match( '/src=["\']([^"\']+)["\']/', $video, $src_match ) ) {
+			$oembed = wp_oembed_get( $src_match[1] );
+			if ( $oembed ) {
+				return msrseminars_kses_video_embed( $oembed );
+			}
+		}
+		return msrseminars_kses_video_embed( $video );
+	}
+
+	if ( preg_match( '/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/', $video, $matches ) ) {
+		$url   = 'https://www.youtube.com/watch?v=' . $matches[1];
+		$embed = wp_oembed_get( $url );
+		if ( $embed ) {
+			return msrseminars_kses_video_embed( $embed );
+		}
+	}
+
+	if ( filter_var( $video, FILTER_VALIDATE_URL ) ) {
+		$embed = wp_oembed_get( $video );
+		if ( $embed ) {
+			return msrseminars_kses_video_embed( $embed );
+		}
+	}
+
+	return '';
+}
+
+/**
+ * Load taxonomy terms for filter-tab templates.
+ *
+ * @param string $taxonomy Taxonomy slug.
+ * @param int    $parent   Parent term ID (category hierarchies); 0 for top-level.
+ * @return WP_Term[]
+ */
+function msrseminars_get_filter_terms( $taxonomy, $parent = 0 ) {
+	$taxonomy = sanitize_key( $taxonomy );
+
+	if ( 'category' === $taxonomy ) {
+		$terms = get_categories(
+			array(
+				'taxonomy'   => 'category',
+				'parent'     => (int) $parent,
+				'hide_empty' => true,
+			)
+		);
+	} else {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => true,
+			)
+		);
+	}
+
+	if ( is_wp_error( $terms ) || ! is_array( $terms ) ) {
+		return array();
+	}
+
+	if ( 'category' === $taxonomy && function_exists( 'msrseminars_get_excluded_sponsored_category_ids' ) ) {
+		$exclude = msrseminars_get_excluded_sponsored_category_ids();
+		if ( $exclude ) {
+			$terms = array_values(
+				array_filter(
+					$terms,
+					static function ( $term ) use ( $exclude ) {
+						return $term instanceof WP_Term && ! in_array( (int) $term->term_id, $exclude, true );
+					}
+				)
+			);
+		}
+	}
+
+	return array_values(
+		array_filter(
+			$terms,
+			static function ( $term ) {
+				return $term instanceof WP_Term;
+			}
+		)
+	);
+}
+
+/**
+ * Build WP_Query arguments for filter-tab listings.
+ *
+ * @param string $post_type Post type slug.
+ * @param string $term_slug Term slug; empty string for "all".
+ * @param string $taxonomy  Taxonomy slug.
+ * @param array  $base_args Extra query arguments.
+ * @return array<string, mixed>
+ */
+function msrseminars_filter_tabs_query_args( $post_type, $term_slug, $taxonomy, $base_args = array() ) {
+	$args = array_merge(
+		array(
+			'post_type'      => sanitize_key( $post_type ),
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+		),
+		$base_args
+	);
+
+	$term_slug = sanitize_title( (string) $term_slug );
+	if ( '' !== $term_slug ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => sanitize_key( $taxonomy ),
+				'field'    => 'slug',
+				'terms'    => $term_slug,
+			),
+		);
+	}
+
+	return $args;
+}
+/**
+ * ACF local JSON — save field group definitions to the theme repo.
+ * The acf-json/ directory acts as source of truth; sync via WP Admin → Custom Fields → Sync.
+ */
+add_filter( 'acf/settings/save_json', function () {
+	return get_stylesheet_directory() . '/acf-json';
+} );
+
+add_filter( 'acf/settings/load_json', function ( $paths ) {
+	$paths[] = get_stylesheet_directory() . '/acf-json';
+	return $paths;
+} );
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -160,75 +423,74 @@ if( function_exists('acf_add_options_page') ) {
     
 };
 
-function bsubash_loadmore_ajax_handler(){
-	$type = $_POST['type'];
-	$category = isset($_POST['category']) ? $_POST['category']: '';
-	$args['paged'] = $_POST['page'] + 1;
-	$args['post_status'] = 'publish';
-	$args['posts_per_page'] =  $_POST['limit'];
-	if($type == 'archive'){
-		$args['category_name'] = $category;
-	}
-	query_posts( $args );
-	if( have_posts() ) :
-        echo '<div class="row">';
-		while(have_posts()): the_post();	
-		echo get_template_part( 'templates/partials/post-listing/posts/maincategory' );
-    endwhile;
-		echo '</div>';
-	endif;
-	die;
-}
-add_action('wp_ajax_loadmore','bsubash_loadmore_ajax_handler');
-add_action('wp_ajax_nopriv_loadmore','bsubash_loadmore_ajax_handler');
+function msrseminars_loadmore_ajax_handler() {
+	check_ajax_referer( 'msr_loadmore', 'nonce' );
 
-if ( ! function_exists( 'tenweb_meta_description' ) ) {
-    function tenweb_meta_description() { 
-        global $post; 
- 
-        if ( is_singular() ) 
-        { 
-            $des_post = strip_tags( $post->post_content ); 
-            $des_post = strip_shortcodes( $des_post ); 
-            $des_post = str_replace( array("\n", "\r", "\t"), ' ', $des_post ); 
-            $des_post = mb_substr( $des_post, 0, 300, 'utf8' ); 
-            echo '<meta name="description" content="' . esc_attr( $des_post ) . '" />' . "\n"; 
-        } 
- 
-        if ( is_home() ) 
-        { 
-            $des_home = strip_tags( (string) get_bloginfo( "description" ) );
-            echo '<meta name="description" content="' . esc_attr( $des_home ) . '" />' . "\n"; 
-        } 
- 
-        if ( is_category() ) {
-            $des_cat = strip_tags(category_description());
-            echo '<meta name="description" content="' . esc_attr( $des_cat ) . '" />' . "\n";
-        } 
-    } 
+	$listing_type = isset( $_POST['listing_type'] ) ? sanitize_text_field( wp_unslash( $_POST['listing_type'] ) ) : '';
+	$page         = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 1;
+	$limit        = isset( $_POST['limit'] ) ? absint( $_POST['limit'] ) : 3;
+	$limit        = min( max( 1, $limit ), 24 );
+
+	$args = array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
+		'posts_per_page'      => $limit,
+		'paged'               => $page + 1,
+		'ignore_sticky_posts' => true,
+		'no_found_rows'       => false,
+	);
+
+	if ( 'archive' === $listing_type ) {
+		$category = isset( $_POST['category'] ) ? sanitize_text_field( wp_unslash( $_POST['category'] ) ) : '';
+		if ( '' !== $category ) {
+			$args['category_name'] = $category;
+		}
+	} elseif ( 'latest' === $listing_type ) {
+		$term_id = isset( $_POST['term_id'] ) ? absint( $_POST['term_id'] ) : 0;
+		if ( $term_id > 0 ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => 'category',
+					'field'    => 'term_id',
+					'terms'    => array( $term_id ),
+				),
+			);
+		}
+	}
+
+	$query = new WP_Query( $args );
+
+	if ( $query->have_posts() ) {
+		echo '<div class="row msr-card-grid">';
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			ob_start();
+			get_template_part( 'template-parts/cards/post-card' );
+			echo ob_get_clean();
+		}
+		echo '</div>';
+		wp_reset_postdata();
+	}
+
+	wp_die( '', '', 200 );
 }
-add_action( 'wp_head', 'tenweb_meta_description');
+add_action('wp_ajax_loadmore','msrseminars_loadmore_ajax_handler');
+add_action('wp_ajax_nopriv_loadmore','msrseminars_loadmore_ajax_handler');
 
 function post_per_page_control( $query ) {
-     if ( is_archive() ) {
-          $query->set( 'posts_per_page', 18 );
-          return;
-     }
-  }
-  add_action( 'pre_get_posts', 'post_per_page_control' );
+	if ( ! $query->is_main_query() || is_admin() ) {
+		return;
+	}
+	if ( $query->is_archive() ) {
+		$query->set( 'posts_per_page', 18 );
+	}
+	if ( $query->is_category() ) {
+		$query->set( 'orderby', 'date' );
+		$query->set( 'order', 'ASC' );
+	}
+}
+add_action( 'pre_get_posts', 'post_per_page_control' );
 
   function wpse_custom_excerpts($limit) {
     return wp_trim_words(get_the_excerpt(), $limit, '[...]');
 }
-
-add_filter('get_the_terms', function ($terms, $post_id, $taxonomy) {
-    $exclude_categories = array(6);
-    if (!is_admin()) {
-        foreach($terms as $key => $term){
-            if($term->taxonomy == "category" && in_array($term->term_id, $exclude_categories)) {
-                unset($terms[$key]);
-            }
-        }
-    }
-    return $terms;
-}, 100, 3);

@@ -1,0 +1,72 @@
+// Seminars layout — overflow clip; agenda tabs on mobile; delegate CTAs
+html {
+	overflow-x: clip;
+}
+
+body.msr-event-context--seminars {
+	overflow-x: clip;
+	max-width: 100vw;
+}
+
+#site-content,
+.site-main {
+	max-width: 100%;
+	overflow-x: clip;
+}
+
+.msr-stories-list__empty,
+.msr-partner-list__empty,
+.msr-panelists__empty,
+.msr-agenda__empty,
+.msr-load-more-status {
+	color: $text-secondary;
+	padding: 1.5rem 0;
+}
+
+.msr-agenda-tabs {
+	.msr-agenda-tabs__nav {
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		border-bottom-color: $border-mid;
+
+		.nav-link {
+			color: $text-secondary;
+			border-radius: $border-radius  $border-radius 0 0;
+
+			&.active {
+				color: $text-primary;
+				background-color: $surface;
+				border-color: $border-mid $border-mid $surface;
+			}
+		}
+	}
+
+	.tab-content {
+		padding-top: 1.5rem;
+	}
+}
+
+.msr-site-search .input-group {
+	max-width: 100%;
+}
+
+@include media('<=phone') {
+	.navbar .container-fluid {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	.site-header .msr-primary-cta {
+		width: 100%;
+
+		.btn {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.msr-agenda-tabs__nav .nav-link {
+		font-size: 0.9rem;
+		padding: 0.5rem 0.75rem;
+	}
+}

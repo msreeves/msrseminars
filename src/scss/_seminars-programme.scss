@@ -1,0 +1,67 @@
+// Delegate journey timeline surfaces
+.seminars-delegate-timeline {
+	background: $surface;
+	border-top: 1px solid $border-mid;
+	border-bottom: 1px solid $border-mid;
+	padding: 2.5rem 0;
+
+	&__title {
+		font-family: $display-text;
+		color: $text-primary;
+	}
+
+	&__status {
+		color: $primary-light;
+		font-weight: 600;
+	}
+
+	&__list {
+		display: grid;
+		gap: 1rem;
+
+		@include media('>=tablet') {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	&__item {
+		background: $surface-mid;
+		border: 1px solid $border-mid;
+		border-radius: 2px;
+		padding: 1rem;
+		position: relative;
+
+		&.is-active {
+			border-color: rgba($primary, 0.65);
+			box-shadow: 0 0 0 1px rgba($primary, 0.25);
+		}
+	}
+
+	&__marker {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: $text-muted;
+		margin-bottom: 0.75rem;
+	}
+
+	&__item.is-active &__marker {
+		background: $primary;
+		box-shadow: 0 0 0 4px rgba($primary, 0.2);
+	}
+
+	&__label {
+		color: $text-primary;
+		font-family: $header-text;
+	}
+
+	&__copy {
+		color: $text-secondary;
+	}
+}
+
+@include media('<=phone') {
+	.seminars-delegate-timeline {
+		padding: 2rem 0;
+	}
+}

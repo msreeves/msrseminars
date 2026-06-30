@@ -11,7 +11,33 @@ Requires PHP: 7.4
 Terminal Command - 'npm run watch'
 */
 
+// Custom variable overrides (defined before Bootstrap so !default vars are replaced)
 @import 'variables';
+@import 'fonts';
+@import 'fontawesome';
+
+// Bootstrap 5.3 — trimmed SASS bundle (Phase 19 CSS budget)
+@import 'bootstrap-core';
+
+// Theme-specific layers on top of Bootstrap
+@import 'event-context';
+@import 'seminars-layout';
+@import 'seminars-agenda';
+@import 'seminars-filter-bar';
+@import 'seminars-a11y';
+@import 'seminars-media';
+@import 'seminars-content';
+@import 'seminars-partners';
+@import 'seminars-ecosystem';
+@import 'seminars-programme';
+@import 'seminars-footer';
 @import 'header';
+@import 'seminars-shell';
+@import 'seminars-nav';
 @import 'content';
 @import 'footer';
+@import 'seminars-hero';
+@import 'seminars-cta-cluster';
+@import 'seminars-portfolio';
+@import 'seminars-logos';
+@import 'seminars-responsive';
