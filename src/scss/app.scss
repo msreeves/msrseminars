@@ -1,7 +1,7 @@
 /*
 Theme Name: msrseminars
 Theme URI: https: //www.msreeves.co.uk/events/msrseminars
-Description: This is my MSR awards theme created from scratch files in Wordpress, it is a Wordpress events website to is focused on a event heavy awards website (Create Custom Posts, posts split by categories etc, hosting nominees and awards). It is built with Node.js modules and compiled with sass to complie css with webpack and laravel-mix.
+Description: MSR Seminars programme theme — agenda, panelists, and seminar content. Assets built with Vite 5 + SCSS (npm run production).
 Author: Michael Reeves
 Author URI: https://www.msreeves.co.uk
 Version: 1.0.0
@@ -21,23 +21,23 @@ Terminal Command - 'npm run watch'
 
 // Theme-specific layers on top of Bootstrap
 @import 'event-context';
-@import 'seminars-layout';
-@import 'seminars-agenda';
-@import 'seminars-filter-bar';
-@import 'seminars-a11y';
-@import 'seminars-media';
-@import 'seminars-content';
-@import 'seminars-partners';
-@import 'seminars-ecosystem';
-@import 'seminars-programme';
-@import 'seminars-footer';
+@import 'layout';
+@import 'agenda';
+@import 'filter-bar';
+@import 'a11y';
+@import 'card-media';
+@import 'listing';
+@import 'partners';
+@import 'ecosystem';
+@import 'programme';
+@import 'site-footer';
 @import 'header';
-@import 'seminars-shell';
-@import 'seminars-nav';
+@import 'shell';
+@import 'nav';
 @import 'content';
 @import 'footer';
-@import 'seminars-hero';
-@import 'seminars-cta-cluster';
-@import 'seminars-portfolio';
-@import 'seminars-logos';
-@import 'seminars-responsive';
+@import 'hero';
+@import 'cta-cluster';
+@import 'home-bands';
+@import 'logos';
+@import 'responsive';

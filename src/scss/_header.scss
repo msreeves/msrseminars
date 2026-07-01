@@ -1,4 +1,4 @@
-// Header shell — brand, toggler, offcanvas chrome (nav lives in _seminars-nav.scss)
+// Header shell — brand, toggler, offcanvas chrome (nav lives in _nav.scss)
 
 header {
 	.navbar {
@@ -68,7 +68,7 @@ header {
 			}
 		}
 
-		.msr-seminars-mobile-nav {
+		.site-header__mobile-nav {
 			background-color: $bg-dark;
 			border-left: 1px solid $border-mid;
 			color: $text-primary;

@@ -2,7 +2,7 @@
  * Mobile nav — offcanvas close + submenu accordions.
  */
 document.addEventListener( 'DOMContentLoaded', function () {
-	const panel = document.getElementById( 'msrSeminarsMobileNav' );
+	const panel = document.getElementById( 'site-header-mobile-nav' );
 	if ( ! panel || typeof bootstrap === 'undefined' ) {
 		return;
 	}

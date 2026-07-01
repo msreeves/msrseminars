@@ -10,21 +10,21 @@
 }
 
 require_once get_template_directory() . '/inc/setup.php';
-require_once get_template_directory() . '/inc/msr-seminars-filter-bar.php';
-require_once get_template_directory() . '/inc/msr-seminars-ecosystem.php';
-require_once get_template_directory() . '/inc/msr-seminars-programme.php';
-require_once get_template_directory() . '/inc/msr-seminars-admin.php';
-require_once get_template_directory() . '/inc/msr-seminars-acf.php';
-require_once get_template_directory() . '/inc/msr-seminars-options.php';
+require_once get_template_directory() . '/inc/filter-bar.php';
+require_once get_template_directory() . '/inc/ecosystem.php';
+require_once get_template_directory() . '/inc/programme.php';
+require_once get_template_directory() . '/inc/admin.php';
+require_once get_template_directory() . '/inc/acf.php';
+require_once get_template_directory() . '/inc/options.php';
 require_once get_template_directory() . '/inc/media.php';
-require_once get_template_directory() . '/inc/msr-seminars-perf.php';
-require_once get_template_directory() . '/inc/msr-seminars-portfolio.php';
-require_once get_template_directory() . '/inc/msr-seminars-people.php';
-require_once get_template_directory() . '/inc/msr-seminars-content.php';
-require_once get_template_directory() . '/inc/msr-seminars-agenda.php';
-require_once get_template_directory() . '/inc/msr-seminars-search.php';
-require_once get_template_directory() . '/inc/msr-seminars-footer.php';
-require_once get_template_directory() . '/inc/msr-seminars-seo.php';
+require_once get_template_directory() . '/inc/perf.php';
+require_once get_template_directory() . '/inc/portfolio.php';
+require_once get_template_directory() . '/inc/people.php';
+require_once get_template_directory() . '/inc/content.php';
+require_once get_template_directory() . '/inc/agenda.php';
+require_once get_template_directory() . '/inc/search.php';
+require_once get_template_directory() . '/inc/footer.php';
+require_once get_template_directory() . '/inc/seo.php';
 
 require_once('inc/controllers/cpt.php');
 require_once('inc/controllers/cpt-admin.php');

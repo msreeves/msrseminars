@@ -8,7 +8,9 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-	<a class="seminars-skip-link" href="#site-content"><?php esc_html_e( 'Skip to content', 'msrseminars' ); ?></a>
+	<a class="msr-skip-link" href="#site-content"><?php esc_html_e( 'Skip to content', 'msrseminars' ); ?></a>
+	<script>document.documentElement.classList.add('js-reveal');</script>
+	<noscript><style>.msr-reveal{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 	<?php
 	if ( function_exists( 'msrseminars_show_leaderboard_ads' ) && msrseminars_show_leaderboard_ads() ) {
 		get_template_part( 'templates/partials/leaderboard/header' );
@@ -34,15 +36,15 @@
 				);
 			}
 			?></a>
-             <button class="navbar-toggler collapsed ms-auto d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#msrSeminarsMobileNav"
-          aria-controls="msrSeminarsMobileNav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'msrseminars' ); ?>">
+             <button class="navbar-toggler collapsed ms-auto d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#site-header-mobile-nav"
+          aria-controls="site-header-mobile-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'msrseminars' ); ?>">
           <span class="icon-bar top-bar"></span>
           <span class="icon-bar middle-bar"></span>
           <span class="icon-bar bottom-bar"></span>
         </button>
-        <div class="offcanvas offcanvas-end msr-seminars-mobile-nav ms-lg-auto" tabindex="-1" id="msrSeminarsMobileNav" aria-labelledby="msrSeminarsMobileNavLabel">
+        <div class="offcanvas offcanvas-end site-header__mobile-nav ms-lg-auto" tabindex="-1" id="site-header-mobile-nav" aria-labelledby="site-header-mobile-nav-label">
 			<div class="offcanvas-header d-lg-none">
-				<p class="offcanvas-title h6 mb-0" id="msrSeminarsMobileNavLabel"><?php esc_html_e( 'Menu', 'msrseminars' ); ?></p>
+				<p class="offcanvas-title h6 mb-0" id="site-header-mobile-nav-label"><?php esc_html_e( 'Menu', 'msrseminars' ); ?></p>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="<?php esc_attr_e( 'Close', 'msrseminars' ); ?>"></button>
 			</div>
 			<div class="offcanvas-body">

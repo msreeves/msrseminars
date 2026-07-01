@@ -45,7 +45,7 @@
 		margin-left: auto;
 	}
 
-	.msr-seminars-mobile-nav.offcanvas {
+	.site-header__mobile-nav.offcanvas {
 		order: 2;
 	}
 
@@ -55,7 +55,7 @@
 	}
 
 	@include media('>=desktop') {
-		.msr-seminars-mobile-nav.offcanvas {
+		.site-header__mobile-nav.offcanvas {
 			position: static;
 			visibility: visible;
 			transform: none;

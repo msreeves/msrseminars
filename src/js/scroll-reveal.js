@@ -1,6 +1,8 @@
 /**
  * Hero / section reveal — CSS transitions + IntersectionObserver (replaces Animate.css).
  */
+document.documentElement.classList.add('js-reveal');
+
 function msrseminarsRevealNodes(root) {
 	var scope = root && root.querySelectorAll ? root : document;
 	var els = scope.querySelectorAll

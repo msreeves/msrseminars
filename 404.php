@@ -13,11 +13,11 @@ $panelists = msrseminars_get_page_url( 'panelists', '/panelists/' );
 $topics    = msrseminars_get_page_url( 'topics', '/topics/' );
 $search    = home_url( '/?s=' );
 ?>
-<main id="site-content" class="seminars-error-page">
+<main id="site-content" class="msr-error-page">
 	<div class="container py-5 text-center">
-		<p class="seminars-error-page__code display-1 mb-2" aria-hidden="true">404</p>
+		<p class="msr-error-page__code display-1 mb-2" aria-hidden="true">404</p>
 		<h1 class="h2 mb-3"><?php esc_html_e( 'Page not found', 'msrseminars' ); ?></h1>
-		<p class="text-muted mb-4 seminars-error-page__lead">
+		<p class="text-muted mb-4 msr-error-page__lead">
 			<?php esc_html_e( 'That URL is not part of the MSR Seminars programme site, or it may have moved.', 'msrseminars' ); ?></p>
 		<nav class="d-flex flex-wrap gap-2 justify-content-center" aria-label="<?php esc_attr_e( 'Helpful links', 'msrseminars' ); ?>">
 			<a class="btn btn-primary" href="<?php echo esc_url( $home ); ?>"><?php esc_html_e( 'Home', 'msrseminars' ); ?></a>
