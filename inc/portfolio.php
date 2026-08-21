@@ -97,12 +97,13 @@ function msrseminars_get_featured_sessions( $limit = 3 ) {
 				continue;
 			}
 			$pool[] = array(
-				'title'  => $title,
-				'track'  => $track->post_title,
-				'time'   => msrseminars_format_session_time_range( $row, $track->ID ),
-				'url'    => msrseminars_get_session_permalink( $track->ID, $index ),
-				'format' => $format,
-				'weight' => msrseminars_get_featured_session_weight( $format, $title ),
+				'title'   => $title,
+				'track'   => $track->post_title,
+				'time'    => msrseminars_format_session_time_range( $row, $track->ID ),
+				'url'     => msrseminars_get_session_permalink( $track->ID, $index ),
+				'format'  => $format,
+				'summary' => trim( (string) ( $row['about'] ?? '' ) ),
+				'weight'  => msrseminars_get_featured_session_weight( $format, $title ),
 			);
 		}
 	}
@@ -127,6 +128,9 @@ function msrseminars_get_featured_sessions( $limit = 3 ) {
 		}
 		$seen[ $key ] = true;
 		unset( $item['weight'] );
+		if ( ! empty( $item['summary'] ) ) {
+			$item['summary'] = wp_trim_words( wp_strip_all_tags( (string) $item['summary'] ), 28, '…' );
+		}
 		$selected[] = $item;
 		if ( count( $selected ) >= $limit ) {
 			break;
@@ -255,40 +259,54 @@ function msrseminars_render_featured_sessions() {
 	?>
 	<section class="seminars-featured-sessions msr-reveal" aria-labelledby="seminars-featured-sessions-heading">
 		<div class="container">
-			<header class="seminars-featured-sessions__header text-center mb-4">
+			<header class="seminars-featured-sessions__header text-center">
 				<h2 id="seminars-featured-sessions-heading" class="h4 seminars-featured-sessions__title mb-2">
 					<?php esc_html_e( 'Featured sessions', 'msrseminars' ); ?>
 				</h2>
 				<p class="seminars-featured-sessions__lead mb-0">
 					<?php esc_html_e( 'A sample of headline sessions from the seeded agenda — swap for live programme picks before launch.', 'msrseminars' ); ?>
 				</p>
+				<?php if ( $agenda_url ) : ?>
+				<div class="seminars-featured-sessions__cta seminars-ctas">
+					<a class="btn btn-outline-primary seminars-featured-sessions__agenda-btn" href="<?php echo esc_url( $agenda_url ); ?>"><?php esc_html_e( 'View full agenda', 'msrseminars' ); ?></a>
+				</div>
+				<?php endif; ?>
 			</header>
 			<ul class="seminars-featured-sessions__grid list-unstyled mb-0">
 				<?php foreach ( $sessions as $session ) : ?>
 				<li class="seminars-featured-sessions__item panel">
-					<a class="seminars-featured-sessions__card-link" href="<?php echo esc_url( $session['url'] ); ?>">
-						<?php if ( ! empty( $session['format'] ) ) : ?>
-						<p class="seminars-featured-sessions__format small text-uppercase mb-1">
-							<?php echo esc_html( msrseminars_get_session_format_label( $session['format'] ) ); ?>
-						</p>
-						<?php endif; ?>
-						<h3 class="h6 seminars-featured-sessions__session-title mb-1"><?php echo esc_html( $session['title'] ); ?></h3>
-						<p class="small seminars-featured-sessions__meta mb-0">
-							<span class="seminars-featured-sessions__track"><?php echo esc_html( $session['track'] ); ?></span>
-							<?php if ( ! empty( $session['time'] ) ) : ?>
-							<span class="seminars-featured-sessions__time" aria-hidden="true"> · </span>
-							<time class="seminars-featured-sessions__time"><?php echo esc_html( $session['time'] ); ?></time>
+					<article class="seminars-featured-sessions__card">
+						<a class="seminars-featured-sessions__card-link" href="<?php echo esc_url( $session['url'] ); ?>">
+							<h3 class="h6 seminars-featured-sessions__session-title mb-0"><?php echo esc_html( $session['title'] ); ?></h3>
+						</a>
+						<ul class="seminars-featured-sessions__chips list-unstyled mb-0" role="list">
+							<?php if ( ! empty( $session['format'] ) ) : ?>
+							<li>
+								<span class="seminars-featured-sessions__chip">
+									<?php echo esc_html( msrseminars_get_session_format_label( $session['format'] ) ); ?>
+								</span>
+							</li>
 							<?php endif; ?>
-						</p>
-					</a>
+							<?php if ( ! empty( $session['track'] ) ) : ?>
+							<li>
+								<span class="seminars-featured-sessions__chip"><?php echo esc_html( $session['track'] ); ?></span>
+							</li>
+							<?php endif; ?>
+							<?php if ( ! empty( $session['time'] ) ) : ?>
+							<li>
+								<span class="seminars-featured-sessions__chip">
+									<time><?php echo esc_html( $session['time'] ); ?></time>
+								</span>
+							</li>
+							<?php endif; ?>
+						</ul>
+						<?php if ( ! empty( $session['summary'] ) ) : ?>
+						<p class="seminars-featured-sessions__summary mb-0"><?php echo esc_html( $session['summary'] ); ?></p>
+						<?php endif; ?>
+					</article>
 				</li>
 				<?php endforeach; ?>
 			</ul>
-			<?php if ( $agenda_url ) : ?>
-			<div class="seminars-featured-sessions__cta seminars-ctas">
-				<a class="btn btn-outline-primary seminars-featured-sessions__agenda-btn" href="<?php echo esc_url( $agenda_url ); ?>"><?php esc_html_e( 'View full agenda', 'msrseminars' ); ?></a>
-			</div>
-			<?php endif; ?>
 		</div>
 	</section>
 	<?php

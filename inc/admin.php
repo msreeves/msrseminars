@@ -366,27 +366,27 @@ function msrseminars_render_primary_nav_fallback_item( $item, $depth = 0 ) {
 		echo '<div class="seminars-nav__row">';
 	}
 
+	$chevron = '<svg class="seminars-nav__chevron" width="12" height="12" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3.2 5.4a.75.75 0 0 1 1.06 0L8 9.14l3.74-3.74a.75.75 0 1 1 1.06 1.06l-4.27 4.27a.75.75 0 0 1-1.06 0L3.2 6.46a.75.75 0 0 1 0-1.06z"/></svg>';
+
 	printf(
-		'<a class="%s"%s><span>%s',
+		'<a class="%s"%s><span>%s</span>%s</a>',
 		esc_attr( $link_class ),
 		$link_attrs, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		esc_html( $item['title'] )
+		esc_html( $item['title'] ),
+		$has_children ? $chevron : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	);
-	if ( $has_children ) {
-		echo '<i class="fa-solid fa-chevron-down seminars-nav__chevron" aria-hidden="true"></i>';
-	}
-	echo '</span></a>';
 
 	if ( $has_children ) {
 		printf(
-			'<button type="button" class="seminars-nav__toggle" aria-expanded="false" aria-label="%s"><i class="fa-solid fa-chevron-down seminars-nav__chevron" aria-hidden="true"></i></button></div>',
+			'<button type="button" class="seminars-nav__toggle" aria-expanded="false" aria-label="%s">%s</button></div>',
 			esc_attr(
 				sprintf(
 					/* translators: %s: parent menu item title */
 					__( 'Show submenu for %s', 'msrseminars' ),
 					$item['title']
 				)
-			)
+			),
+			$chevron // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 		echo '<ul class="seminars-nav__submenu">';
 		foreach ( $children as $child ) {

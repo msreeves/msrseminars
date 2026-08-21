@@ -28,6 +28,9 @@ get_header();
 	if ( function_exists( 'msrseminars_render_featured_sessions' ) ) {
 		msrseminars_render_featured_sessions();
 	}
+	if ( function_exists( 'msrseminars_render_companion_home_band' ) ) {
+		msrseminars_render_companion_home_band();
+	}
 	?>
 	<?php
 	$sections = get_field( 'add_sections' );

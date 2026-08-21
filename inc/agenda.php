@@ -558,6 +558,10 @@ function msrseminars_render_agenda_session_filters() {
 	);
 	echo '<p class="seminars-agenda-filters__empty" data-seminars-agenda-filter-empty hidden>' . esc_html__( 'No sessions match these filters. Clear a filter to see the full agenda.', 'msrseminars' ) . '</p>';
 	echo '</div>';
+
+	if ( function_exists( 'msrseminars_render_companion_agenda_link' ) ) {
+		msrseminars_render_companion_agenda_link();
+	}
 }
 
 /**

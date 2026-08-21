@@ -69,11 +69,15 @@ body.msr-seminars .site-header {
 		color: $teal-light;
 	}
 
+	// Square SVG chevron — avoid FA webfont at tiny font-size (looks squashed in flex).
 	.seminars-nav__chevron {
-		font-size: 0.6rem;
-		opacity: 0.75;
-		line-height: 1;
+		display: block;
+		flex-shrink: 0;
+		width: 0.75rem;
+		height: 0.75rem;
+		opacity: 0.8;
 		transition: transform 0.2s ease;
+		transform-origin: center;
 	}
 
 	.seminars-nav__toggle {

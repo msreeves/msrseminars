@@ -398,6 +398,11 @@ function msrseminars_render_delegate_journey() {
 				<?php esc_html_e( 'Read topics', 'msrseminars' ); ?>
 			</a>
 		</nav>
+		<?php
+		if ( function_exists( 'msrseminars_render_companion_delegates_line' ) ) {
+			msrseminars_render_companion_delegates_line();
+		}
+		?>
 	</section>
 	<?php
 }
