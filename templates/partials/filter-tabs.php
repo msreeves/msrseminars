@@ -53,6 +53,22 @@ if ( ! $initial_is_all ) {
 		}
 	}
 }
+
+/**
+ * Hidden copy used by filter-tabs.js to sync the page intro (title + description).
+ *
+ * @param string $title Term or section title.
+ * @param string $description_html Term description HTML (already sanitized).
+ * @return void
+ */
+$render_pane_intro_copy = static function ( $title, $description_html = '' ) {
+	$title = (string) $title;
+	$description_html = (string) $description_html;
+	echo '<div class="visually-hidden" data-msr-filter-pane-copy hidden>';
+	echo '<span data-msr-filter-pane-title>' . esc_html( $title ) . '</span>';
+	echo '<div data-msr-filter-pane-desc>' . wp_kses_post( $description_html ) . '</div>';
+	echo '</div>';
+};
 ?>
 <div class="post-tabs msr-filter-tabs" id="<?php echo esc_attr( $tabs_id ); ?>" data-msr-filter-tabs>
 	<?php
@@ -81,6 +97,7 @@ if ( ! $initial_is_all ) {
 			aria-labelledby="<?php echo esc_attr( $tabs_id ); ?>-tab-all"
 			tabindex="0"
 			data-filter-label="<?php echo esc_attr( $all_label ); ?>"
+			data-filter-intro-hide
 		>
 			<?php
 			$all_query = new WP_Query(
@@ -122,6 +139,7 @@ if ( ! $initial_is_all ) {
 			$term_query = new WP_Query(
 				msrseminars_filter_tabs_query_args( $post_type, $term->slug, $taxonomy, $query_args )
 			);
+			$term_desc = term_description( $term, $taxonomy );
 			?>
 			<div
 				class="tab-pane fade<?php echo $is_active_pane( $term->slug ) ? ' show active' : ''; ?>"
@@ -131,6 +149,7 @@ if ( ! $initial_is_all ) {
 				tabindex="0"
 				data-filter-label="<?php echo esc_attr( $term->name ); ?>"
 			>
+				<?php $render_pane_intro_copy( $term->name, $term_desc ); ?>
 				<?php if ( $term_query->have_posts() ) : ?>
 					<div class="row msr-card-grid">
 						<?php

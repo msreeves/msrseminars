@@ -11,13 +11,12 @@ get_header();
 <main id="site-content" class="site-main">
 <section class="seminars-archive-listing seminars-topics-archive">
 	<div class="container">
-		<header class="seminars-topics-intro">
-			<?php the_title( '<h1>', '</h1>' ); ?>
-			<?php if ( get_the_content() ) : ?>
-				<div class="seminars-topics-intro__description msr-rich-text">
-					<?php the_content(); ?>
-				</div>
-			<?php endif; ?>
+		<header class="seminars-topics-intro" data-msr-filter-intro>
+			<?php /* Title + description sync from filter tabs; hidden while All is active. */ ?>
+			<div data-msr-filter-intro-body hidden>
+				<h1 data-msr-filter-intro-title></h1>
+				<div class="seminars-topics-intro__description" data-msr-filter-intro-description></div>
+			</div>
 		</header>
 		<?php get_template_part( 'template-parts/forms/site-search' ); ?>
 		<?php

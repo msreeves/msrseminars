@@ -26,3 +26,8 @@ function msrseminars_theme_setup() {
 	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
 }
 add_action( 'after_setup_theme', 'msrseminars_theme_setup' );
+
+/**
+ * Drop "Category:", "Tag:", etc. from archive headings (parity with awards/events).
+ */
+add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );

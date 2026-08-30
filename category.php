@@ -10,19 +10,25 @@ get_header();
 $term = get_queried_object();
 $slug = ( $term instanceof WP_Term ) ? $term->slug : '';
 $topics_url = msrseminars_get_page_url( 'topics', '/topics/' );
+$term_name  = ( $term instanceof WP_Term ) ? $term->name : '';
+$term_desc  = ( $term instanceof WP_Term ) ? term_description( $term ) : '';
 ?>
 
 <main id="site-content" class="site-main">
 <section class="seminars-archive-listing seminars-topics-archive">
 	<div class="container">
-		<header class="seminars-topics-intro">
+		<header class="seminars-topics-intro" data-msr-filter-intro>
 			<?php if ( '' !== $topics_url ) : ?>
 			<p class="seminars-topics-intro__back small mb-2">
 				<a href="<?php echo esc_url( $topics_url ); ?>"><?php esc_html_e( '← All topics', 'msrseminars' ); ?></a>
 			</p>
 			<?php endif; ?>
-			<?php the_archive_title( '<h1>', '</h1>' ); ?>
-			<?php the_archive_description( '<div class="seminars-topics-intro__description">', '</div>' ); ?>
+			<div data-msr-filter-intro-body<?php echo '' === $slug ? ' hidden' : ''; ?>>
+				<h1 data-msr-filter-intro-title><?php echo esc_html( $term_name ); ?></h1>
+				<div class="seminars-topics-intro__description" data-msr-filter-intro-description>
+					<?php echo wp_kses_post( $term_desc ); ?>
+				</div>
+			</div>
 		</header>
 		<?php get_template_part( 'template-parts/forms/site-search' ); ?>
 		<?php

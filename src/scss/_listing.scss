@@ -83,9 +83,14 @@
 
 	&__description {
 		color: $text-secondary;
+		text-align: center;
 
 		> :last-child {
 			margin-bottom: 0;
+		}
+
+		&:empty {
+			display: none;
 		}
 	}
 
@@ -96,6 +101,20 @@
 		&:hover,
 		&:focus-visible {
 			text-decoration: underline;
+		}
+	}
+
+	[data-msr-filter-intro-body][hidden] {
+		display: none !important;
+	}
+}
+
+.seminars-topics-intro {
+	[data-msr-filter-intro-body] {
+		text-align: center;
+
+		h1 {
+			text-align: center;
 		}
 	}
 }
