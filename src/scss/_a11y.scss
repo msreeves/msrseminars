@@ -72,6 +72,23 @@ body.msr-seminars {
 		outline-offset: var(--seminars-focus-offset, 3px);
 	}
 
+	#cssmenu a:focus-visible {
+		outline-color: var(--seminars-focus-ring, #{$teal});
+		outline-offset: 2px;
+	}
+
+	.site-header .msr-primary-cta {
+		.btn:focus-visible {
+			outline: 2px solid var(--seminars-focus-ring, #{$teal});
+			outline-offset: 3px;
+		}
+	}
+
+	.btn-load-more:focus-visible {
+		outline: 2px solid var(--seminars-focus-ring, #{$teal});
+		outline-offset: 3px;
+	}
+
 	.btn,
 	.btn-sm,
 	.btn-load-more,
@@ -82,6 +99,7 @@ body.msr-seminars {
 	.post-card__categories a,
 	.seminars-site-footer__links a,
 	.seminars-site-footer__social-link,
+	header #cssmenu > ul > li > a,
 	[id^='seminars-carousel-'] a,
 	.msr-agenda-tabs .nav-link,
 	.msr-filter-tabs .seminars-filter-bar__tab,
@@ -134,7 +152,8 @@ body.msr-seminars {
 	.seminars-nav__toggle,
 	.post-card__categories a,
 	.seminars-site-footer__links a,
-	.seminars-site-footer__social-link {
+	.seminars-site-footer__social-link,
+	header #cssmenu > ul > li > a {
 		display: inline-flex;
 		align-items: center;
 	}

@@ -6,6 +6,36 @@
  */
 
 /**
+ * Whether copy looks like Latin / lorem placeholder (not programme meta).
+ *
+ * @param string $text Plain text.
+ * @return bool
+ */
+function msrseminars_seo_is_placeholder_copy( $text ) {
+	$text = strtolower( trim( wp_strip_all_tags( $text ) ) );
+	if ( '' === $text ) {
+		return true;
+	}
+
+	$patterns = array(
+		'lorem ipsum',
+		'class aptent taciti',
+		'dolor sit amet',
+		'ut et neque lacus',
+		'in et arcu eu dui',
+		'nulla consequat et mas',
+	);
+
+	foreach ( $patterns as $pattern ) {
+		if ( str_contains( $text, $pattern ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Normalise and trim a meta description string.
  *
  * @param string $description Raw description.
@@ -17,7 +47,7 @@ function msrseminars_seo_normalize_description( $description ) {
 	$description = preg_replace( '/\s+/', ' ', $description );
 	$description = trim( (string) $description );
 
-	if ( '' === $description ) {
+	if ( '' === $description || msrseminars_seo_is_placeholder_copy( $description ) ) {
 		return '';
 	}
 

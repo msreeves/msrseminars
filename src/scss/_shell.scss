@@ -20,7 +20,7 @@
 	.seminars-navbar__inner {
 		align-items: center;
 		gap: 0.5rem 1rem;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 	}
 
 	.navbar-brand {
@@ -29,7 +29,7 @@
 		flex-shrink: 0;
 		margin-right: 0;
 		padding: 0;
-		max-width: 11rem;
+		max-width: none;
 		order: 1;
 
 		img.custom-logo {
@@ -52,6 +52,19 @@
 	.navbar-nav {
 		height: auto;
 		align-items: center;
+	}
+
+	#cssmenu > ul {
+		align-items: center;
+		gap: 0.15rem 0.35rem;
+
+		> li > a {
+			font-family: $body-text;
+			font-size: 0.9375rem;
+			font-weight: 600;
+			letter-spacing: 0.02em;
+			padding: 0.5rem 0.75rem;
+		}
 	}
 
 	@include media('>=desktop') {
@@ -83,6 +96,10 @@
 		.navbar-toggler {
 			display: none;
 		}
+
+		#cssmenu > ul {
+			justify-content: flex-end;
+		}
 	}
 
 	.msr-primary-cta {
@@ -97,6 +114,33 @@
 			font-size: 0.875rem;
 			padding: 0.4rem 0.85rem;
 			white-space: nowrap;
+		}
+	}
+}
+
+body.msr-seminars {
+	.btn-primary {
+		background-color: $teal;
+		border-color: $teal;
+		color: $bg-dark !important;
+
+		&:hover,
+		&:focus-visible {
+			background-color: $teal-light;
+			border-color: $teal-light;
+			color: $bg-dark !important;
+		}
+	}
+
+	.btn-outline-primary {
+		color: $text-primary;
+		border-color: $teal-light;
+
+		&:hover,
+		&:focus-visible {
+			background-color: $teal-light;
+			border-color: $teal-light;
+			color: $bg-dark !important;
 		}
 	}
 }

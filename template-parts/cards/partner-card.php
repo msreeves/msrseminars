@@ -11,6 +11,9 @@
 
 $compact = ! empty( $args['compact'] );
 $link    = msrseminars_get_acf_link_parts( get_field( 'link' ) );
+$tier_slug   = msrseminars_get_partner_tier( get_the_ID() );
+$tier_labels = msrseminars_get_sponsor_tiers();
+$tier_label  = $tier_labels[ $tier_slug ] ?? '';
 $media_args = array();
 if ( $link['url'] ) {
 	$media_args = array(
@@ -33,5 +36,10 @@ if ( ! $link['url'] && ! $compact ) {
 			}
 			?>
 		</div>
+		<?php if ( ! $compact && $tier_label ) : ?>
+			<p class="partner-card__tier small text-center mb-2">
+				<span class="partner-card__tier-badge"><?php echo esc_html( $tier_label ); ?></span>
+			</p>
+		<?php endif; ?>
 	</article>
 </div>

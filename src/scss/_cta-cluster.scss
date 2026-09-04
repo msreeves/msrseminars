@@ -41,6 +41,17 @@ body.msr-seminars .msr-primary-cta {
 	}
 }
 
+body.msr-seminars .seminars-cta-panel__body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--msr-stack-gap);
+}
+
+body.msr-seminars :is(h1, h2, h3, p, .msr-rich-text) + :is(.seminars-ctas, .ctas, .msr-primary-cta__actions) {
+	margin-top: var(--msr-cta-cluster-mt);
+}
+
 body.msr-seminars .seminars-cta-panel__body .seminars-ctas,
 body.msr-seminars .msr-seminars-hero .seminars-ctas,
 body.msr-seminars .seminars-delegate-journey__cta {
