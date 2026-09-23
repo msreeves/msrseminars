@@ -207,3 +207,16 @@ select {
         color: $bg-dark;
     }
 }
+
+.btn-outline-secondary {
+    color: $text-secondary;
+    border-color: $border-mid;
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        border-color: $gold;
+        color: $gold-light;
+    }
+}

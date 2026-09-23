@@ -122,6 +122,10 @@
 		color: $gold;
 		font-weight: 700;
 	}
+
+	&__count {
+		display: none;
+	}
 }
 
 @include media('<=tablet') {

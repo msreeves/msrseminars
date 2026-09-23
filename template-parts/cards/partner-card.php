@@ -27,12 +27,12 @@ if ( ! $link['url'] && ! $compact ) {
 ?>
 <div class="<?php echo esc_attr( $compact ? 'seminars-partner-chip' : 'seminars-partners-grid__item' ); ?>">
 	<article <?php post_class( $compact ? 'partner-card partner-card--compact' : 'partner-card msr-reveal msr-reveal--up' ); ?>>
-		<div class="partner-card__logo seminars-logo-tile<?php echo $compact ? ' seminars-logo-tile--compact' : ''; ?>">
+		<div class="partner-card__logo seminars-logo-tile msr-logo-tile<?php echo $compact ? ' seminars-logo-tile--compact msr-logo-tile--compact' : ''; ?>">
 			<?php
 			if ( $link['url'] ) {
-				msrseminars_render_card_media( null, 'medium', $media_args );
+				msrseminars_render_logo_media( null, 'medium_large', $media_args );
 			} else {
-				msrseminars_render_card_media( null, 'medium' );
+				msrseminars_render_logo_media( null, 'medium_large' );
 			}
 			?>
 		</div>

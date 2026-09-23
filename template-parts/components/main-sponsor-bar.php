@@ -39,11 +39,11 @@ if ( ! $sponsors ) {
 				}
 				?>
 				<?php if ( $sponsor_url ) : ?>
-				<a class="seminars-main-sponsor__logo seminars-logo-tile" href="<?php echo esc_url( $sponsor_url ); ?>" target="_blank" rel="noopener noreferrer">
+				<a class="seminars-main-sponsor__logo seminars-logo-tile msr-logo-tile" href="<?php echo esc_url( $sponsor_url ); ?>" target="_blank" rel="noopener noreferrer">
 					<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async" />
 				</a>
 				<?php else : ?>
-				<span class="seminars-main-sponsor__logo seminars-logo-tile">
+				<span class="seminars-main-sponsor__logo seminars-logo-tile msr-logo-tile">
 					<img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" decoding="async" />
 				</span>
 				<?php endif; ?>

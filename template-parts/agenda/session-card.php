@@ -165,7 +165,7 @@ if ( $is_break ) {
 									: $sponsor_name;
 								$thumb_id   = (int) get_post_thumbnail_id( $sponsor_id );
 								?>
-							<a class="seminars-logo-tile seminars-agenda-session__sponsor-link" href="<?php echo esc_url( $sponsor_url ); ?>" aria-label="<?php echo esc_attr( $link_label ); ?>">
+							<a class="seminars-logo-tile msr-logo-tile seminars-agenda-session__sponsor-link" href="<?php echo esc_url( $sponsor_url ); ?>" aria-label="<?php echo esc_attr( $link_label ); ?>">
 								<?php if ( $thumb_id ) : ?>
 									<?php
 									echo wp_get_attachment_image(

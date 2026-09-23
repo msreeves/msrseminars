@@ -36,14 +36,17 @@
 		display: flex;
 	}
 
-	.post-card {
+	.post-card,
+	.nominee-card,
+	.partner-card {
 		width: 100%;
 		flex: 1 1 auto;
 		display: flex;
 		flex-direction: column;
 	}
 
-	.post-card__body {
+	.post-card__body,
+	.nominee-card__body {
 		display: flex;
 		flex-direction: column;
 		flex: 1 1 auto;
@@ -127,6 +130,39 @@
 	}
 }
 
+
+.seminars-partner-tier {
+	margin-bottom: 2rem;
+
+	&__heading {
+		color: $teal-light;
+		letter-spacing: 0.06em;
+		margin-bottom: 1rem;
+	}
+}
+
+.partner-card__tier-badge {
+	padding: 0.2rem 0.55rem;
+	border: 1px solid $border-mid;
+	border-radius: 999px;
+	color: $text-secondary;
+	font-size: 0.75rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.nominee-card__terms span {
+	padding: 0.2rem 0.55rem;
+	border: 1px solid $border-mid;
+	border-radius: 999px;
+	color: $text-secondary;
+	font-size: 0.75rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	display: inline-block;
+	margin: 0 0.25rem 0.5rem;
+}
+
 // Phase 18 — delegate journey + sponsor tiers
 
 .seminars-delegate-journey {
@@ -158,7 +194,7 @@
 	}
 
 	&__step-label {
-		color: $gold-light;
+		color: $teal-light;
 		letter-spacing: 0.08em;
 	}
 

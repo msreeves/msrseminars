@@ -1,37 +1,49 @@
-// Partner / sponsor logo wells — dark surface; teal monochrome for contrast on dark bg
+// Partner / sponsor logo wells — seminars teal identity + layout containment
+// (not awards sharp white plates; not hub-blue borders)
 $seminars-logo-teal-filter: brightness(0) saturate(100%) invert(59%) sepia(47%) saturate(522%)
 	hue-rotate(118deg) brightness(92%) contrast(92%);
+$seminars-logo-well: #fbfffe;
+$seminars-logo-well-border: rgba($teal, 0.38);
 
-.site-header .navbar-brand img.custom-logo,
-.seminars-logo-tile img,
-.seminars-main-sponsor__logo img,
-.partner-card__logo.seminars-logo-tile img,
-.partner-listing-image.seminars-logo-tile img {
+// Header mark only — partner / sponsor tile images must stay full-colour.
+.site-header .navbar-brand img.custom-logo {
 	filter: $seminars-logo-teal-filter;
 }
 
-.seminars-logo-tile {
+.seminars-logo-tile img,
+.msr-logo-tile img,
+.seminars-main-sponsor__logo img,
+.partner-card__logo.seminars-logo-tile img,
+.partner-listing-image.seminars-logo-tile img,
+.msr-logo-tile__img {
+	filter: none;
+}
+
+.seminars-logo-tile,
+.msr-logo-tile {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	min-height: 6.5rem;
-	padding: 1rem 1.25rem;
-	background: $surface-mid;
-	border: 1px solid $border-mid;
-	border-radius: 4px;
+	max-width: 100%;
+	min-width: 0;
+	min-height: 7.5rem;
+	margin-inline: auto;
+	padding: 1.25rem 1.35rem;
+	background: $seminars-logo-well;
+	border: 1px solid $seminars-logo-well-border;
+	border-radius: 12px;
 	overflow: hidden;
 	box-sizing: border-box;
 
-	img,
-	.msr-card-media__img {
-		display: block;
-		width: auto;
-		height: auto;
+	.msr-logo-tile__link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
 		max-width: 100%;
-		max-height: 4rem;
-		object-fit: contain;
-		margin: 0 auto;
+		height: auto;
+		text-decoration: none;
 	}
 
 	.msr-card-media {
@@ -40,25 +52,39 @@ $seminars-logo-teal-filter: brightness(0) saturate(100%) invert(59%) sepia(47%) 
 		justify-content: center;
 		width: 100%;
 		max-width: 100%;
-		max-height: 4rem;
+		height: auto;
+		max-height: none;
+		min-height: 4.5rem;
 		overflow: hidden;
 		background: transparent;
 		aspect-ratio: auto;
 	}
-}
-
-.seminars-logo-tile--compact {
-	min-height: 5rem;
-	min-width: 6.5rem;
-	max-width: 8.5rem;
-	padding: 0.65rem 0.85rem;
 
 	img,
+	.msr-logo-tile__img,
 	.msr-card-media__img {
-		max-height: 3.25rem;
+		display: block;
+		width: auto !important;
+		height: auto !important;
+		max-width: 100%;
+		max-height: 4.75rem;
+		object-fit: contain !important;
+		object-position: center;
+		margin: 0;
 	}
+}
 
-	.msr-card-media {
+.seminars-logo-tile--compact,
+.msr-logo-tile--compact {
+	min-width: 6rem;
+	min-height: 4.5rem;
+	padding: 0.65rem 0.85rem;
+	border-radius: 10px;
+
+	img,
+	.msr-logo-tile__img,
+	.msr-card-media__img {
+		max-width: 100%;
 		max-height: 3.25rem;
 	}
 }
@@ -75,6 +101,16 @@ $seminars-logo-teal-filter: brightness(0) saturate(100%) invert(59%) sepia(47%) 
 		height: auto;
 		object-fit: contain;
 	}
+}
+
+.site-header .navbar-brand.seminars-logo-tile--compact,
+.site-header .navbar-brand.msr-logo-tile--compact {
+	min-height: auto;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	width: auto;
 }
 
 .seminars-main-sponsor {
@@ -121,8 +157,14 @@ $seminars-logo-teal-filter: brightness(0) saturate(100%) invert(59%) sepia(47%) 
 body.msr-seminars {
 	.partner-card__logo.seminars-logo-tile,
 	.partner-listing-image.seminars-logo-tile {
-		background: $surface-mid;
-		border: 1px solid $border-mid;
+		background: $seminars-logo-well;
+		border: 1px solid $seminars-logo-well-border;
 		box-shadow: none;
 	}
+}
+
+.seminars-main-sponsor__logo.msr-logo-tile {
+	width: 100%;
+	max-width: 12rem;
+	min-height: 5.5rem;
 }

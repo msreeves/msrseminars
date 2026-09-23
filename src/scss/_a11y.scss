@@ -67,7 +67,9 @@ body.msr-seminars {
 	.seminars-nav__link:focus-visible,
 	.seminars-nav__sublink:focus-visible,
 	.navbar-toggler:focus-visible,
-	.pagination a.page-numbers:focus-visible {
+	.pagination a.page-numbers:focus-visible,
+	.msr-card-media:focus-visible,
+	.nominee-card a:focus-visible {
 		outline: 2px solid var(--seminars-focus-ring, #{$teal});
 		outline-offset: var(--seminars-focus-offset, 3px);
 	}
