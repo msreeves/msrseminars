@@ -131,6 +131,38 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 		});
 
+		root.addEventListener('keydown', function (event) {
+			var target = event.target;
+			if (!target || !target.matches || !target.matches('[data-bs-toggle="tab"]')) {
+				return;
+			}
+			if (!root.contains(target)) {
+				return;
+			}
+			var tabs = Array.prototype.slice.call(tabControls);
+			var index = tabs.indexOf(target);
+			if (index < 0 || typeof bootstrap === 'undefined') {
+				return;
+			}
+			var nextIndex = -1;
+			if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+				nextIndex = (index + 1) % tabs.length;
+			} else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+				nextIndex = (index - 1 + tabs.length) % tabs.length;
+			} else if (event.key === 'Home') {
+				nextIndex = 0;
+			} else if (event.key === 'End') {
+				nextIndex = tabs.length - 1;
+			}
+			if (nextIndex < 0 || nextIndex === index) {
+				return;
+			}
+			event.preventDefault();
+			var nextTab = tabs[nextIndex];
+			bootstrap.Tab.getOrCreateInstance(nextTab).show();
+			nextTab.focus();
+		});
+
 		syncTabActiveState(root.querySelector('[data-bs-toggle="tab"].active') || tabControls[0]);
 		updateStatusFromPane(activePane());
 		updateIntroFromPane(activePane());

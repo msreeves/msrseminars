@@ -9,19 +9,19 @@ function msrseminars_get_ecosystem_link_defaults() {
 	return array(
 		'hub'        => array(
 			'label'       => __( 'MSR Events hub', 'msrseminars' ),
-			'url'         => 'http://msrevents.local:8888/',
+			'url'         => 'http://msrevents.local/',
 			'description' => __( 'Programme routing, ceremony pages, and cross-programme stories on the MSR demonstration events hub.', 'msrseminars' ),
 			'cta'         => __( 'Visit the events hub', 'msrseminars' ),
 		),
 		'awards'     => array(
 			'label'       => __( 'MSR Awards', 'msrseminars' ),
-			'url'         => 'http://msrevents.local:8888/msrawards/',
+			'url'         => 'http://msrevents.local/msrawards/',
 			'description' => __( 'Recognition programme connected to seminar keynote and panel coverage in the demo estate.', 'msrseminars' ),
 			'cta'         => __( 'Visit MSR Awards', 'msrseminars' ),
 		),
 		'publishing' => array(
 			'label'       => __( 'Atlas Briefing insights', 'msrseminars' ),
-			'url'         => 'http://127.0.0.1:8888/sites/wp/msrpublishing/insights/',
+			'url'         => 'http://127.0.0.1/sites/wp/msrpublishing/insights/',
 			'description' => __( 'Post-event resources, commentary, and replay-linked articles from Atlas Briefing.', 'msrseminars' ),
 			'cta'         => __( 'Read Atlas Briefing', 'msrseminars' ),
 		),

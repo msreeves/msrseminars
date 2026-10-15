@@ -14,7 +14,7 @@
  * @return string
  */
 function msrseminars_get_companion_demo_url_default() {
-	return 'http://127.0.0.1:8888/sites/portfolio/projects/event-companion/?event=msrseminars';
+	return 'http://127.0.0.1/sites/portfolio/projects/event-companion/?event=msrseminars';
 }
 
 /**

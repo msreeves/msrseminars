@@ -24,6 +24,7 @@ require_once get_template_directory() . '/inc/people.php';
 require_once get_template_directory() . '/inc/content.php';
 require_once get_template_directory() . '/inc/agenda.php';
 require_once get_template_directory() . '/inc/search.php';
+require_once get_template_directory() . '/inc/url-hygiene.php';
 require_once get_template_directory() . '/inc/footer.php';
 require_once get_template_directory() . '/inc/seo.php';
 
